@@ -109,10 +109,10 @@ namespace RandomFileOpener
             this.ControlTableCnt.Location = new System.Drawing.Point(0, 0);
             this.ControlTableCnt.Name = "ControlTableCnt";
             this.ControlTableCnt.RowCount = 4;
-            this.ControlTableCnt.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
-            this.ControlTableCnt.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.ControlTableCnt.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
-            this.ControlTableCnt.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 60F));
+            this.ControlTableCnt.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.ControlTableCnt.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.76471F));
+            this.ControlTableCnt.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 17.64706F));
+            this.ControlTableCnt.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70.58823F));
             this.ControlTableCnt.Size = new System.Drawing.Size(841, 429);
             this.ControlTableCnt.TabIndex = 20;
             // 
