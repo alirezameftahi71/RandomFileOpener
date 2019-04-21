@@ -8,9 +8,10 @@ namespace RandomFileOpener.Control
 {
     public static class ActionManager
     {
-        public static string SelectRandomFile(string path, string type)
+        public static string SelectRandomFile(string path, string[] formats)
         {
-            string[] files = Directory.EnumerateFiles(path, type, System.IO.SearchOption.AllDirectories).ToArray();
+            string[] files = formats.SelectMany(format => Directory.EnumerateFiles(path, format, System.IO.SearchOption.AllDirectories))
+                .ToArray();
             return files[new Random().Next(files.Length)];
         }
 

@@ -15,10 +15,10 @@ namespace RandomFileOpener
 
         private void RandomBtn_Click(object sender, EventArgs e)
         {
-            string type = string.IsNullOrWhiteSpace(this.filterFormatTbx.Text) ? "*.*" : this.filterFormatTbx.Text;
+            string[] types = Utility.GetValidatedFileFormats(this.filterFormatTbx.Text);
             try
             {
-                string fullPathToFile = ActionManager.SelectRandomFile(this.PathLbl.Text, type);
+                string fullPathToFile = ActionManager.SelectRandomFile(this.PathLbl.Text, types);
                 this.FilesListBox.Items.Add(fullPathToFile);
                 this.FilesListBox.SelectedIndex = this.FilesListBox.Items.Count - 1;
                 ActionManager.OpenFile(fullPathToFile);
@@ -101,5 +101,7 @@ namespace RandomFileOpener
                 Utility.ShowErrorMessage("File Not Found", error.Message);
             }
         }
+
+        private void ClearStackBtn_Click(object sender, EventArgs e) => this.FilesListBox.Items.Clear();
     }
 }

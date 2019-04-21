@@ -40,10 +40,12 @@ namespace RandomFileOpener
             this.ReOpenBtn = new System.Windows.Forms.Button();
             this.DeleteBtn = new System.Windows.Forms.Button();
             this.FuncBtn = new System.Windows.Forms.Button();
+            this.ClearStackBtn = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.BrowseBtn = new System.Windows.Forms.Button();
             this.PathLbl = new System.Windows.Forms.Label();
-            this.filterFormatTbx = new System.Windows.Forms.TextBox();
             this.filterTypeGroupBox = new System.Windows.Forms.GroupBox();
+            this.filterFormatTbx = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.ListSplitCnt)).BeginInit();
             this.ListSplitCnt.Panel1.SuspendLayout();
             this.ListSplitCnt.Panel2.SuspendLayout();
@@ -116,16 +118,19 @@ namespace RandomFileOpener
             // 
             // ActionTableCnt
             // 
-            this.ActionTableCnt.ColumnCount = 3;
-            this.ActionTableCnt.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.ActionTableCnt.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.ActionTableCnt.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.ActionTableCnt.ColumnCount = 4;
+            this.ActionTableCnt.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.ActionTableCnt.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.ActionTableCnt.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.ActionTableCnt.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.ActionTableCnt.Controls.Add(this.FindTargetBtn, 0, 1);
             this.ActionTableCnt.Controls.Add(this.RandomBtn, 0, 0);
             this.ActionTableCnt.Controls.Add(this.DeleteItemBtn, 2, 0);
             this.ActionTableCnt.Controls.Add(this.ReOpenBtn, 1, 1);
             this.ActionTableCnt.Controls.Add(this.DeleteBtn, 1, 0);
             this.ActionTableCnt.Controls.Add(this.FuncBtn, 2, 1);
+            this.ActionTableCnt.Controls.Add(this.ClearStackBtn, 3, 0);
+            this.ActionTableCnt.Controls.Add(this.button2, 3, 1);
             this.ActionTableCnt.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ActionTableCnt.Location = new System.Drawing.Point(3, 173);
             this.ActionTableCnt.Name = "ActionTableCnt";
@@ -141,7 +146,7 @@ namespace RandomFileOpener
             this.FindTargetBtn.Location = new System.Drawing.Point(3, 128);
             this.FindTargetBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.FindTargetBtn.Name = "FindTargetBtn";
-            this.FindTargetBtn.Size = new System.Drawing.Size(272, 123);
+            this.FindTargetBtn.Size = new System.Drawing.Size(202, 123);
             this.FindTargetBtn.TabIndex = 17;
             this.FindTargetBtn.Text = "Show In Explorer";
             this.FindTargetBtn.UseVisualStyleBackColor = true;
@@ -153,7 +158,7 @@ namespace RandomFileOpener
             this.RandomBtn.Location = new System.Drawing.Point(3, 2);
             this.RandomBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.RandomBtn.Name = "RandomBtn";
-            this.RandomBtn.Size = new System.Drawing.Size(272, 122);
+            this.RandomBtn.Size = new System.Drawing.Size(202, 122);
             this.RandomBtn.TabIndex = 12;
             this.RandomBtn.Text = "Random!";
             this.RandomBtn.UseVisualStyleBackColor = true;
@@ -162,9 +167,9 @@ namespace RandomFileOpener
             // DeleteItemBtn
             // 
             this.DeleteItemBtn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DeleteItemBtn.Location = new System.Drawing.Point(559, 3);
+            this.DeleteItemBtn.Location = new System.Drawing.Point(419, 3);
             this.DeleteItemBtn.Name = "DeleteItemBtn";
-            this.DeleteItemBtn.Size = new System.Drawing.Size(273, 120);
+            this.DeleteItemBtn.Size = new System.Drawing.Size(202, 120);
             this.DeleteItemBtn.TabIndex = 18;
             this.DeleteItemBtn.Text = "Delete From List";
             this.DeleteItemBtn.UseVisualStyleBackColor = true;
@@ -173,10 +178,10 @@ namespace RandomFileOpener
             // ReOpenBtn
             // 
             this.ReOpenBtn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ReOpenBtn.Location = new System.Drawing.Point(281, 128);
+            this.ReOpenBtn.Location = new System.Drawing.Point(211, 128);
             this.ReOpenBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ReOpenBtn.Name = "ReOpenBtn";
-            this.ReOpenBtn.Size = new System.Drawing.Size(272, 123);
+            this.ReOpenBtn.Size = new System.Drawing.Size(202, 123);
             this.ReOpenBtn.TabIndex = 15;
             this.ReOpenBtn.Text = "ReOpen";
             this.ReOpenBtn.UseVisualStyleBackColor = true;
@@ -185,10 +190,10 @@ namespace RandomFileOpener
             // DeleteBtn
             // 
             this.DeleteBtn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DeleteBtn.Location = new System.Drawing.Point(281, 2);
+            this.DeleteBtn.Location = new System.Drawing.Point(211, 2);
             this.DeleteBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.DeleteBtn.Name = "DeleteBtn";
-            this.DeleteBtn.Size = new System.Drawing.Size(272, 122);
+            this.DeleteBtn.Size = new System.Drawing.Size(202, 122);
             this.DeleteBtn.TabIndex = 16;
             this.DeleteBtn.Text = "Delete";
             this.DeleteBtn.UseVisualStyleBackColor = true;
@@ -198,12 +203,34 @@ namespace RandomFileOpener
             // 
             this.FuncBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.FuncBtn.Enabled = false;
-            this.FuncBtn.Location = new System.Drawing.Point(559, 129);
+            this.FuncBtn.Location = new System.Drawing.Point(419, 129);
             this.FuncBtn.Name = "FuncBtn";
-            this.FuncBtn.Size = new System.Drawing.Size(273, 121);
+            this.FuncBtn.Size = new System.Drawing.Size(202, 121);
             this.FuncBtn.TabIndex = 19;
             this.FuncBtn.Text = "button2";
             this.FuncBtn.UseVisualStyleBackColor = true;
+            // 
+            // ClearStackBtn
+            // 
+            this.ClearStackBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ClearStackBtn.Location = new System.Drawing.Point(627, 3);
+            this.ClearStackBtn.Name = "ClearStackBtn";
+            this.ClearStackBtn.Size = new System.Drawing.Size(205, 120);
+            this.ClearStackBtn.TabIndex = 20;
+            this.ClearStackBtn.Text = "Clear Stack";
+            this.ClearStackBtn.UseVisualStyleBackColor = true;
+            this.ClearStackBtn.Click += new System.EventHandler(this.ClearStackBtn_Click);
+            // 
+            // button2
+            // 
+            this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button2.Enabled = false;
+            this.button2.Location = new System.Drawing.Point(627, 129);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(205, 121);
+            this.button2.TabIndex = 21;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
             // 
             // BrowseBtn
             // 
@@ -228,16 +255,6 @@ namespace RandomFileOpener
             this.PathLbl.TabIndex = 19;
             this.PathLbl.Text = "C:\\";
             // 
-            // filterFormatTbx
-            // 
-            this.filterFormatTbx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.filterFormatTbx.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.filterFormatTbx.Location = new System.Drawing.Point(3, 18);
-            this.filterFormatTbx.Name = "filterFormatTbx";
-            this.filterFormatTbx.Size = new System.Drawing.Size(829, 32);
-            this.filterFormatTbx.TabIndex = 22;
-            this.filterFormatTbx.Text = "*.*";
-            // 
             // filterTypeGroupBox
             // 
             this.filterTypeGroupBox.Controls.Add(this.filterFormatTbx);
@@ -248,6 +265,16 @@ namespace RandomFileOpener
             this.filterTypeGroupBox.TabIndex = 22;
             this.filterTypeGroupBox.TabStop = false;
             this.filterTypeGroupBox.Text = "Filter File Format";
+            // 
+            // filterFormatTbx
+            // 
+            this.filterFormatTbx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.filterFormatTbx.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.filterFormatTbx.Location = new System.Drawing.Point(3, 18);
+            this.filterFormatTbx.Name = "filterFormatTbx";
+            this.filterFormatTbx.Size = new System.Drawing.Size(829, 32);
+            this.filterFormatTbx.TabIndex = 22;
+            this.filterFormatTbx.Text = "*.*";
             // 
             // MainWindow
             // 
@@ -289,6 +316,8 @@ namespace RandomFileOpener
         private System.Windows.Forms.Label PathLbl;
         private System.Windows.Forms.GroupBox filterTypeGroupBox;
         private System.Windows.Forms.TextBox filterFormatTbx;
+        private System.Windows.Forms.Button ClearStackBtn;
+        private System.Windows.Forms.Button button2;
     }
 }
 
