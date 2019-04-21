@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualBasic.FileIO;
 using System;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace RandomFileOpener.Control
@@ -9,7 +10,7 @@ namespace RandomFileOpener.Control
     {
         public static string SelectRandomFile(string path, string type)
         {
-            string[] files = Directory.GetFiles(path, type, System.IO.SearchOption.AllDirectories);
+            string[] files = Directory.EnumerateFiles(path, type, System.IO.SearchOption.AllDirectories).ToArray();
             return files[new Random().Next(files.Length)];
         }
 
@@ -29,18 +30,7 @@ namespace RandomFileOpener.Control
             }
         }
 
-        public static void DeleteFile(string path)
-        {
-            if (FileSystem.FileExists(path))
-            {
-                FileSystem.DeleteFile(path, UIOption.AllDialogs, RecycleOption.SendToRecycleBin);
-            }
-            else
-            {
-                throw new FileNotFoundException();
-            }
-
-        }
+        public static void DeleteFile(string path) => FileSystem.DeleteFile(path, UIOption.AllDialogs, RecycleOption.SendToRecycleBin);
 
         public static void ShowInExplorer(string path) => System.Diagnostics.Process.Start("explorer.exe", "/select, \"" + path + "\"");
     }

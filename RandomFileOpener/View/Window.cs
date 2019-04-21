@@ -15,9 +15,10 @@ namespace RandomFileOpener
 
         private void RandomBtn_Click(object sender, EventArgs e)
         {
+            string type = string.IsNullOrWhiteSpace(this.filterFormatTbx.Text) ? "*.*" : this.filterFormatTbx.Text;
             try
             {
-                string fullPathToFile = ActionManager.SelectRandomFile(this.PathLbl.Text, "*.*");
+                string fullPathToFile = ActionManager.SelectRandomFile(this.PathLbl.Text, type);
                 this.FilesListBox.Items.Add(fullPathToFile);
                 this.FilesListBox.SelectedIndex = this.FilesListBox.Items.Count - 1;
                 ActionManager.OpenFile(fullPathToFile);
@@ -34,37 +35,9 @@ namespace RandomFileOpener
             {
                 Utility.ShowErrorMessage("Directory Not Found", error.Message);
             }
-        }
-
-        private void ReOpenBtn_Click(object sender, EventArgs e)
-        {
-            try
+            catch (IndexOutOfRangeException error)
             {
-                ActionManager.OpenFile(this.FilesListBox.SelectedItem.ToString());
-            }
-            catch (FileNotFoundException error)
-            {
-                Utility.ShowErrorMessage("File Not Found", error.Message);
-            }
-            catch (NullReferenceException error)
-            {
-                Utility.ShowErrorMessage(error.Message, "No File is selected to be opened.");
-            }
-            catch (Win32Exception error)
-            {
-                Utility.ShowErrorMessage("File Not Found", error.Message);
-            }
-        }
-
-        private void DeleteItemBtn_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                this.FilesListBox.Items.RemoveAt(this.FilesListBox.SelectedIndex);
-            }
-            catch (ArgumentOutOfRangeException error)
-            {
-                Utility.ShowErrorMessage(error.Message, "No Item Selected to be removed from the list.");
+                Utility.ShowErrorMessage(error.Message, "Directory is Empty or no file found by specified type.");
             }
         }
 
@@ -85,6 +58,18 @@ namespace RandomFileOpener
             }
         }
 
+        private void DeleteItemBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.FilesListBox.Items.RemoveAt(this.FilesListBox.SelectedIndex);
+            }
+            catch (ArgumentOutOfRangeException error)
+            {
+                Utility.ShowErrorMessage(error.Message, "No Item Selected to be removed from the list.");
+            }
+        }
+
         private void FindTargetBtn_Click(object sender, EventArgs e)
         {
             try
@@ -94,6 +79,26 @@ namespace RandomFileOpener
             catch (NullReferenceException error)
             {
                 Utility.ShowErrorMessage(error.Message, "No File Selected to be referenced.");
+            }
+        }
+
+        private void ReOpenBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ActionManager.OpenFile(this.FilesListBox.SelectedItem.ToString());
+            }
+            catch (FileNotFoundException error)
+            {
+                Utility.ShowErrorMessage("File Not Found", error.Message);
+            }
+            catch (NullReferenceException error)
+            {
+                Utility.ShowErrorMessage(error.Message, "No File is selected to be opened.");
+            }
+            catch (Win32Exception error)
+            {
+                Utility.ShowErrorMessage("File Not Found", error.Message);
             }
         }
     }
