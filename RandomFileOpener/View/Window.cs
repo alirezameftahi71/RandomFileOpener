@@ -1,5 +1,6 @@
 using RandomFileOpener.Control;
 using System;
+using System.ComponentModel;
 using System.IO;
 using System.Windows.Forms;
 
@@ -7,6 +8,7 @@ namespace RandomFileOpener
 {
     public partial class MainWindow:Form
     {
+        //Utility.WriteToLog(this.LogLbl, );
         public MainWindow() => this.InitializeComponent();
 
         private void BrowseBtn_Click(object sender, EventArgs e) => this.PathLbl.Text = ActionManager.GetDirectoryPath(this.PathLbl.Text);
@@ -17,6 +19,7 @@ namespace RandomFileOpener
             {
                 string fullPathToFile = ActionManager.SelectRandomFile(this.PathLbl.Text, "*.*");
                 this.FilesListBox.Items.Add(fullPathToFile);
+                this.FilesListBox.SelectedIndex = this.FilesListBox.Items.Count - 1;
                 ActionManager.OpenFile(fullPathToFile);
             }
             catch (UnauthorizedAccessException error)
@@ -26,6 +29,10 @@ namespace RandomFileOpener
             catch (FileNotFoundException error)
             {
                 Utility.ShowErrorMessage("File Not Found", error.Message);
+            }
+            catch (DirectoryNotFoundException error)
+            {
+                Utility.ShowErrorMessage("Directory Not Found", error.Message);
             }
         }
 
@@ -42,6 +49,10 @@ namespace RandomFileOpener
             catch (NullReferenceException error)
             {
                 Utility.ShowErrorMessage(error.Message, "No File is selected to be opened.");
+            }
+            catch (Win32Exception error)
+            {
+                Utility.ShowErrorMessage("File Not Found", error.Message);
             }
         }
 
