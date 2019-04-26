@@ -1,4 +1,6 @@
 using RandomFileOpener.Control;
+using RandomFileOpener.Model;
+using RandomFileOpener.View;
 using System;
 using System.ComponentModel;
 using System.IO;
@@ -8,20 +10,31 @@ namespace RandomFileOpener
 {
     public partial class MainWindow:Form
     {
-        //Utility.WriteToLog(this.LogLbl, );
+        private static OptionsWindows optionsWindows = new OptionsWindows();
         public MainWindow() => this.InitializeComponent();
 
-        private void BrowseBtn_Click(object sender, EventArgs e) => this.PathLbl.Text = ActionManager.GetDirectoryPath(this.PathLbl.Text);
+        private void BrowseBtn_Click(object sender, EventArgs e)
+            => this.PathLbl.Text = ActionManager.GetDirectoryPath(this.PathLbl.Text);
 
         private void RandomBtn_Click(object sender, EventArgs e)
         {
-            string[] types = Utility.GetValidatedFileFormats(this.filterFormatTbx.Text);
+            string[] validExtentions = Utility.GetValidatedFileFormats(OptionsManager.ValidFileExtentions);
             try
             {
-                string fullPathToFile = ActionManager.SelectRandomFile(this.PathLbl.Text, types);
-                this.FilesListBox.Items.Add(fullPathToFile);
+                SearchOption searchOption = OptionsManager.SearchSubDir == true ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly;
+                bool uniqueSelection = OptionsManager.SearchUnique;
+                string directoryPath = this.PathLbl.Text;
+                string filePath = ActionManager.SelectRandomFile(directoryPath, validExtentions, searchOption, uniqueSelection);
+                string fileName = Path.GetFileNameWithoutExtension(filePath);
+                string fileExtention = Path.GetExtension(filePath);
+                OptionsManager.StackItems.Add(new FileItem()
+                {
+                    Name = fileName,
+                    Extention = fileExtention,
+                    Path = filePath,
+                });
                 this.FilesListBox.SelectedIndex = this.FilesListBox.Items.Count - 1;
-                ActionManager.OpenFile(fullPathToFile);
+                ActionManager.OpenFile(filePath);
             }
             catch (UnauthorizedAccessException error)
             {
@@ -37,7 +50,13 @@ namespace RandomFileOpener
             }
             catch (IndexOutOfRangeException error)
             {
-                Utility.ShowErrorMessage(error.Message, "Directory is Empty or no file found by specified type.");
+                Utility.ShowErrorMessage(error.Message, "Directory is Empty or " +
+                    "no file found by specified extention or " +
+                    "no unique files found.");
+            }
+            catch(ArgumentException error)
+            {
+                Utility.ShowErrorMessage(error.Message, "No Path Selected.");
             }
         }
 
@@ -45,8 +64,9 @@ namespace RandomFileOpener
         {
             try
             {
-                ActionManager.DeleteFile(this.FilesListBox.SelectedItem.ToString());
-                this.FilesListBox.Items.RemoveAt(this.FilesListBox.SelectedIndex);
+                FileItem fileItem = Utility.GetSelectedFileItem((int)this.FilesListBox.SelectedValue);
+                ActionManager.DeleteFile(fileItem.Path);
+                OptionsManager.StackItems.Remove(fileItem);
             }
             catch (FileNotFoundException error)
             {
@@ -62,9 +82,10 @@ namespace RandomFileOpener
         {
             try
             {
-                this.FilesListBox.Items.RemoveAt(this.FilesListBox.SelectedIndex);
+                FileItem fileItem = Utility.GetSelectedFileItem((int)this.FilesListBox.SelectedValue);
+                OptionsManager.StackItems.Remove(fileItem);
             }
-            catch (ArgumentOutOfRangeException error)
+            catch (NullReferenceException error)
             {
                 Utility.ShowErrorMessage(error.Message, "No Item Selected to be removed from the list.");
             }
@@ -74,7 +95,8 @@ namespace RandomFileOpener
         {
             try
             {
-                ActionManager.ShowInExplorer(this.FilesListBox.SelectedItem.ToString());
+                FileItem fileItem = Utility.GetSelectedFileItem((int)this.FilesListBox.SelectedValue);
+                ActionManager.ShowInExplorer(fileItem.Path);
             }
             catch (NullReferenceException error)
             {
@@ -86,7 +108,8 @@ namespace RandomFileOpener
         {
             try
             {
-                ActionManager.OpenFile(this.FilesListBox.SelectedItem.ToString());
+                string filePath = Utility.GetSelectedFileItem((int)this.FilesListBox.SelectedValue).Path;
+                ActionManager.OpenFile(filePath);
             }
             catch (FileNotFoundException error)
             {
@@ -102,6 +125,9 @@ namespace RandomFileOpener
             }
         }
 
-        private void ClearStackBtn_Click(object sender, EventArgs e) => this.FilesListBox.Items.Clear();
+        private void ClearStackBtn_Click(object sender, EventArgs e) => OptionsManager.StackItems.Clear();
+
+        private void OptionsToolStripMenuItem_Click(object sender, EventArgs e)
+            => optionsWindows.ShowDialog();
     }
 }

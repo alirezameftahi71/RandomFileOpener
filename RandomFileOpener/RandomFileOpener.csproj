@@ -49,7 +49,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>icon.ico</ApplicationIcon>
+    <ApplicationIcon>Assets\icon.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>RandomFileOpener.Program</StartupObject>
@@ -89,12 +89,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Control\ActionManager.cs" />
+    <Compile Include="Control\OptionsManager.cs" />
     <Compile Include="Control\Utility.cs" />
-    <Compile Include="View\Window.cs">
+    <Compile Include="Model\FileItem.cs" />
+    <Compile Include="View\OptionsWindows.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\Window.Designer.cs">
-      <DependentUpon>Window.cs</DependentUpon>
+    <Compile Include="View\OptionsWindows.Designer.cs">
+      <DependentUpon>OptionsWindows.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\MainWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\MainWindow.Designer.cs">
+      <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -108,8 +116,11 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="View\Window.resx">
-      <DependentUpon>Window.cs</DependentUpon>
+    <EmbeddedResource Include="View\MainWindow.resx">
+      <DependentUpon>MainWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\OptionsWindows.resx">
+      <DependentUpon>OptionsWindows.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
@@ -121,17 +132,13 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="RandomFileOpener_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Model\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Assets\icon.ico" />
-    <Content Include="icon.ico" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
