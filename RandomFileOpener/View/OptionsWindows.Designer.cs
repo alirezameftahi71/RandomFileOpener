@@ -36,15 +36,23 @@
             this.SearchUniqueOnRdb = new System.Windows.Forms.RadioButton();
             this.SearchUniqueOffRdb = new System.Windows.Forms.RadioButton();
             this.filterTypeGroupBox = new System.Windows.Forms.GroupBox();
+            this.filterFormatTbx = new System.Windows.Forms.TextBox();
+            this.exampleFilterExtensionLbl = new System.Windows.Forms.Label();
             this.OptionsFooterPanelCnt = new System.Windows.Forms.Panel();
             this.OptionsOKBtn = new System.Windows.Forms.Button();
-            this.exampleFilterExtensionLbl = new System.Windows.Forms.Label();
-            this.filterFormatTbx = new System.Windows.Forms.TextBox();
+            this.MoveGroupBox1 = new System.Windows.Forms.GroupBox();
+            this.MoveGroupBox2 = new System.Windows.Forms.GroupBox();
+            this.MovePathLbl1 = new System.Windows.Forms.Label();
+            this.MovePathTbox1 = new System.Windows.Forms.TextBox();
+            this.MovePathLbl2 = new System.Windows.Forms.Label();
+            this.MovePathTbox2 = new System.Windows.Forms.TextBox();
             this.ParentTableCnt.SuspendLayout();
             this.SearchSubDirGroupBox.SuspendLayout();
             this.SearchUniqueGroupBox.SuspendLayout();
             this.filterTypeGroupBox.SuspendLayout();
             this.OptionsFooterPanelCnt.SuspendLayout();
+            this.MoveGroupBox1.SuspendLayout();
+            this.MoveGroupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // ParentTableCnt
@@ -55,15 +63,18 @@
             this.ParentTableCnt.Controls.Add(this.SearchSubDirGroupBox, 1, 0);
             this.ParentTableCnt.Controls.Add(this.SearchUniqueGroupBox, 0, 0);
             this.ParentTableCnt.Controls.Add(this.filterTypeGroupBox, 0, 1);
-            this.ParentTableCnt.Controls.Add(this.OptionsFooterPanelCnt, 0, 2);
+            this.ParentTableCnt.Controls.Add(this.OptionsFooterPanelCnt, 0, 3);
+            this.ParentTableCnt.Controls.Add(this.MoveGroupBox1, 0, 2);
+            this.ParentTableCnt.Controls.Add(this.MoveGroupBox2, 1, 2);
             this.ParentTableCnt.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ParentTableCnt.Location = new System.Drawing.Point(0, 0);
             this.ParentTableCnt.Name = "ParentTableCnt";
-            this.ParentTableCnt.RowCount = 3;
-            this.ParentTableCnt.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 66.66667F));
+            this.ParentTableCnt.RowCount = 4;
             this.ParentTableCnt.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.ParentTableCnt.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
-            this.ParentTableCnt.Size = new System.Drawing.Size(513, 263);
+            this.ParentTableCnt.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.ParentTableCnt.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.ParentTableCnt.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.ParentTableCnt.Size = new System.Drawing.Size(513, 368);
             this.ParentTableCnt.TabIndex = 0;
             // 
             // SearchSubDirGroupBox
@@ -147,12 +158,31 @@
             this.filterTypeGroupBox.TabStop = false;
             this.filterTypeGroupBox.Text = "Filter File Format";
             // 
+            // filterFormatTbx
+            // 
+            this.filterFormatTbx.Dock = System.Windows.Forms.DockStyle.Top;
+            this.filterFormatTbx.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.filterFormatTbx.Location = new System.Drawing.Point(3, 35);
+            this.filterFormatTbx.Name = "filterFormatTbx";
+            this.filterFormatTbx.Size = new System.Drawing.Size(501, 32);
+            this.filterFormatTbx.TabIndex = 24;
+            // 
+            // exampleFilterExtensionLbl
+            // 
+            this.exampleFilterExtensionLbl.Dock = System.Windows.Forms.DockStyle.Top;
+            this.exampleFilterExtensionLbl.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.exampleFilterExtensionLbl.Location = new System.Drawing.Point(3, 18);
+            this.exampleFilterExtensionLbl.Name = "exampleFilterExtensionLbl";
+            this.exampleFilterExtensionLbl.Size = new System.Drawing.Size(501, 17);
+            this.exampleFilterExtensionLbl.TabIndex = 23;
+            this.exampleFilterExtensionLbl.Text = "ie: *.mp3,*.jpeg,*.docx";
+            // 
             // OptionsFooterPanelCnt
             // 
             this.ParentTableCnt.SetColumnSpan(this.OptionsFooterPanelCnt, 2);
             this.OptionsFooterPanelCnt.Controls.Add(this.OptionsOKBtn);
             this.OptionsFooterPanelCnt.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.OptionsFooterPanelCnt.Location = new System.Drawing.Point(3, 207);
+            this.OptionsFooterPanelCnt.Location = new System.Drawing.Point(3, 313);
             this.OptionsFooterPanelCnt.Name = "OptionsFooterPanelCnt";
             this.OptionsFooterPanelCnt.Size = new System.Drawing.Size(507, 53);
             this.OptionsFooterPanelCnt.TabIndex = 24;
@@ -168,30 +198,73 @@
             this.OptionsOKBtn.UseVisualStyleBackColor = true;
             this.OptionsOKBtn.Click += new System.EventHandler(this.OptionsOKBtn_Click);
             // 
-            // exampleFilterExtensionLbl
+            // MoveGroupBox1
             // 
-            this.exampleFilterExtensionLbl.Dock = System.Windows.Forms.DockStyle.Top;
-            this.exampleFilterExtensionLbl.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.exampleFilterExtensionLbl.Location = new System.Drawing.Point(3, 18);
-            this.exampleFilterExtensionLbl.Name = "exampleFilterExtensionLbl";
-            this.exampleFilterExtensionLbl.Size = new System.Drawing.Size(501, 17);
-            this.exampleFilterExtensionLbl.TabIndex = 23;
-            this.exampleFilterExtensionLbl.Text = "ie: *.mp3,*.jpeg,*.docx";
+            this.MoveGroupBox1.Controls.Add(this.MovePathTbox1);
+            this.MoveGroupBox1.Controls.Add(this.MovePathLbl1);
+            this.MoveGroupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MoveGroupBox1.Location = new System.Drawing.Point(3, 207);
+            this.MoveGroupBox1.Name = "MoveGroupBox1";
+            this.MoveGroupBox1.Size = new System.Drawing.Size(250, 100);
+            this.MoveGroupBox1.TabIndex = 25;
+            this.MoveGroupBox1.TabStop = false;
+            this.MoveGroupBox1.Text = "Move Path #1";
             // 
-            // filterFormatTbx
+            // MoveGroupBox2
             // 
-            this.filterFormatTbx.Dock = System.Windows.Forms.DockStyle.Top;
-            this.filterFormatTbx.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.filterFormatTbx.Location = new System.Drawing.Point(3, 35);
-            this.filterFormatTbx.Name = "filterFormatTbx";
-            this.filterFormatTbx.Size = new System.Drawing.Size(501, 32);
-            this.filterFormatTbx.TabIndex = 24;
+            this.MoveGroupBox2.Controls.Add(this.MovePathTbox2);
+            this.MoveGroupBox2.Controls.Add(this.MovePathLbl2);
+            this.MoveGroupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MoveGroupBox2.Location = new System.Drawing.Point(259, 207);
+            this.MoveGroupBox2.Name = "MoveGroupBox2";
+            this.MoveGroupBox2.Size = new System.Drawing.Size(251, 100);
+            this.MoveGroupBox2.TabIndex = 26;
+            this.MoveGroupBox2.TabStop = false;
+            this.MoveGroupBox2.Text = "Move Path #2";
+            // 
+            // MovePathLbl1
+            // 
+            this.MovePathLbl1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.MovePathLbl1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.MovePathLbl1.Location = new System.Drawing.Point(3, 18);
+            this.MovePathLbl1.Name = "MovePathLbl1";
+            this.MovePathLbl1.Size = new System.Drawing.Size(244, 17);
+            this.MovePathLbl1.TabIndex = 24;
+            this.MovePathLbl1.Text = "ie: D:\\\\";
+            // 
+            // MovePathTbox1
+            // 
+            this.MovePathTbox1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.MovePathTbox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MovePathTbox1.Location = new System.Drawing.Point(3, 35);
+            this.MovePathTbox1.Name = "MovePathTbox1";
+            this.MovePathTbox1.Size = new System.Drawing.Size(244, 32);
+            this.MovePathTbox1.TabIndex = 25;
+            // 
+            // MovePathLbl2
+            // 
+            this.MovePathLbl2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.MovePathLbl2.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.MovePathLbl2.Location = new System.Drawing.Point(3, 18);
+            this.MovePathLbl2.Name = "MovePathLbl2";
+            this.MovePathLbl2.Size = new System.Drawing.Size(245, 17);
+            this.MovePathLbl2.TabIndex = 25;
+            this.MovePathLbl2.Text = "ie: C:\\\\";
+            // 
+            // MovePathTbox2
+            // 
+            this.MovePathTbox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MovePathTbox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MovePathTbox2.Location = new System.Drawing.Point(3, 35);
+            this.MovePathTbox2.Name = "MovePathTbox2";
+            this.MovePathTbox2.Size = new System.Drawing.Size(245, 32);
+            this.MovePathTbox2.TabIndex = 26;
             // 
             // OptionsWindows
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(513, 263);
+            this.ClientSize = new System.Drawing.Size(513, 368);
             this.Controls.Add(this.ParentTableCnt);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "OptionsWindows";
@@ -205,6 +278,10 @@
             this.filterTypeGroupBox.ResumeLayout(false);
             this.filterTypeGroupBox.PerformLayout();
             this.OptionsFooterPanelCnt.ResumeLayout(false);
+            this.MoveGroupBox1.ResumeLayout(false);
+            this.MoveGroupBox1.PerformLayout();
+            this.MoveGroupBox2.ResumeLayout(false);
+            this.MoveGroupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -223,5 +300,11 @@
         private System.Windows.Forms.Button OptionsOKBtn;
         private System.Windows.Forms.TextBox filterFormatTbx;
         private System.Windows.Forms.Label exampleFilterExtensionLbl;
+        private System.Windows.Forms.GroupBox MoveGroupBox1;
+        private System.Windows.Forms.GroupBox MoveGroupBox2;
+        private System.Windows.Forms.TextBox MovePathTbox1;
+        private System.Windows.Forms.Label MovePathLbl1;
+        private System.Windows.Forms.TextBox MovePathTbox2;
+        private System.Windows.Forms.Label MovePathLbl2;
     }
 }

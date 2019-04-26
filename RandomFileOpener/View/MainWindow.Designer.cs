@@ -36,12 +36,14 @@ namespace RandomFileOpener
             this.FilesListBox = new System.Windows.Forms.ListBox();
             this.ControlTableCnt = new System.Windows.Forms.TableLayoutPanel();
             this.ActionTableCnt = new System.Windows.Forms.TableLayoutPanel();
+            this.MovePathBtn2 = new System.Windows.Forms.Button();
             this.FindTargetBtn = new System.Windows.Forms.Button();
             this.RandomBtn = new System.Windows.Forms.Button();
             this.DeleteItemBtn = new System.Windows.Forms.Button();
             this.ReOpenBtn = new System.Windows.Forms.Button();
             this.DeleteBtn = new System.Windows.Forms.Button();
             this.ClearStackBtn = new System.Windows.Forms.Button();
+            this.MovePathBtn1 = new System.Windows.Forms.Button();
             this.BrowseBtn = new System.Windows.Forms.Button();
             this.PathLbl = new System.Windows.Forms.Label();
             this.FileMenu = new System.Windows.Forms.MenuStrip();
@@ -126,12 +128,14 @@ namespace RandomFileOpener
             this.ActionTableCnt.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.ActionTableCnt.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.ActionTableCnt.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.ActionTableCnt.Controls.Add(this.MovePathBtn2, 3, 1);
             this.ActionTableCnt.Controls.Add(this.FindTargetBtn, 0, 1);
             this.ActionTableCnt.Controls.Add(this.RandomBtn, 0, 0);
             this.ActionTableCnt.Controls.Add(this.DeleteItemBtn, 2, 0);
             this.ActionTableCnt.Controls.Add(this.ReOpenBtn, 1, 1);
             this.ActionTableCnt.Controls.Add(this.DeleteBtn, 1, 0);
             this.ActionTableCnt.Controls.Add(this.ClearStackBtn, 3, 0);
+            this.ActionTableCnt.Controls.Add(this.MovePathBtn1, 2, 1);
             this.ActionTableCnt.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ActionTableCnt.Location = new System.Drawing.Point(3, 110);
             this.ActionTableCnt.Name = "ActionTableCnt";
@@ -140,6 +144,17 @@ namespace RandomFileOpener
             this.ActionTableCnt.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.ActionTableCnt.Size = new System.Drawing.Size(835, 254);
             this.ActionTableCnt.TabIndex = 21;
+            // 
+            // MovePathBtn2
+            // 
+            this.MovePathBtn2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MovePathBtn2.Location = new System.Drawing.Point(627, 130);
+            this.MovePathBtn2.Name = "MovePathBtn2";
+            this.MovePathBtn2.Size = new System.Drawing.Size(205, 121);
+            this.MovePathBtn2.TabIndex = 22;
+            this.MovePathBtn2.Text = "Move To Path #2";
+            this.MovePathBtn2.UseVisualStyleBackColor = true;
+            this.MovePathBtn2.Click += new System.EventHandler(this.MovePathBtn2_Click);
             // 
             // FindTargetBtn
             // 
@@ -210,6 +225,17 @@ namespace RandomFileOpener
             this.ClearStackBtn.Text = "Clear Stack";
             this.ClearStackBtn.UseVisualStyleBackColor = true;
             this.ClearStackBtn.Click += new System.EventHandler(this.ClearStackBtn_Click);
+            // 
+            // MovePathBtn1
+            // 
+            this.MovePathBtn1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MovePathBtn1.Location = new System.Drawing.Point(419, 130);
+            this.MovePathBtn1.Name = "MovePathBtn1";
+            this.MovePathBtn1.Size = new System.Drawing.Size(202, 121);
+            this.MovePathBtn1.TabIndex = 21;
+            this.MovePathBtn1.Text = "Move To Path #1";
+            this.MovePathBtn1.UseVisualStyleBackColor = true;
+            this.MovePathBtn1.Click += new System.EventHandler(this.MovePathBtn1_Click);
             // 
             // BrowseBtn
             // 
@@ -303,6 +329,8 @@ namespace RandomFileOpener
         private System.Windows.Forms.MenuStrip FileMenu;
         private System.Windows.Forms.ToolStripMenuItem ToolsMenuMember;
         private System.Windows.Forms.ToolStripMenuItem OptionsMenuMemberOption;
+        private System.Windows.Forms.Button MovePathBtn2;
+        private System.Windows.Forms.Button MovePathBtn1;
     }
 }
 

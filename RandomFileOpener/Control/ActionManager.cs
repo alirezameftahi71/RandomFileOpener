@@ -43,5 +43,7 @@ namespace RandomFileOpener.Control
 
         public static void ShowInExplorer(string path)
             => System.Diagnostics.Process.Start("explorer.exe", "/select, \"" + path + "\"");
+
+        public static void MoveToPath(string srcPath, string destPath) => File.Move(srcPath, destPath);
     }
 }
