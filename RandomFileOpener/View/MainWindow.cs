@@ -54,7 +54,7 @@ namespace RandomFileOpener
                     "no file found by specified extention or " +
                     "no unique files found.");
             }
-            catch(ArgumentException error)
+            catch (ArgumentException error)
             {
                 Utility.ShowErrorMessage(error.Message, "No Path Selected.");
             }
@@ -132,16 +132,36 @@ namespace RandomFileOpener
 
         private void MovePathBtn1_Click(object sender, EventArgs e)
         {
-            FileItem fileItem = Utility.GetSelectedFileItem((int)this.FilesListBox.SelectedValue);
-            string srcPath = fileItem.Path;
-            string destPath = OptionsManager.MovePath1 + "\\" + fileItem.Name + fileItem.Extention;
+            try
+            {
+                FileItem fileItem = Utility.GetSelectedFileItem((int)this.FilesListBox.SelectedValue);
+                string srcPath = fileItem.Path;
+                string destPath = OptionsManager.MovePath1 + "\\" + fileItem.Name + fileItem.Extention;
+                ActionManager.MoveToPath(srcPath, destPath);
+                MessageBox.Show("Successfully moved!");
+            }
+            catch (Exception error)
+            {
+                Utility.ShowErrorMessage("Fucking error happend", error.Message);
+            }
+
         }
 
         private void MovePathBtn2_Click(object sender, EventArgs e)
         {
-            FileItem fileItem = Utility.GetSelectedFileItem((int)this.FilesListBox.SelectedValue);
-            string srcPath = fileItem.Path;
-            string destPath = OptionsManager.MovePath2 + "\\" + fileItem.Name + fileItem.Extention;
+            try
+            {
+                FileItem fileItem = Utility.GetSelectedFileItem((int)this.FilesListBox.SelectedValue);
+                string srcPath = fileItem.Path;
+                string destPath = OptionsManager.MovePath2 + "\\" + fileItem.Name + fileItem.Extention;
+                ActionManager.MoveToPath(srcPath, destPath);
+                MessageBox.Show("Successfully moved!");
+            }
+            catch (Exception error)
+            {
+                Utility.ShowErrorMessage("Fucking error happened", error.Message);
+            }
+
         }
     }
 }
