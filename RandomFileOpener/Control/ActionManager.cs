@@ -34,7 +34,7 @@ namespace RandomFileOpener.Control
 
                 return dialogResult == DialogResult.OK && !string.IsNullOrWhiteSpace(folderBrowserDialog.SelectedPath)
                     ? folderBrowserDialog.SelectedPath
-                    : null;
+                    : latestPath;
             }
         }
 
