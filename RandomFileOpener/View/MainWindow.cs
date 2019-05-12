@@ -148,6 +148,10 @@ namespace RandomFileOpener
             {
                 Utility.ShowErrorMessage("Access Denied", error.Message);
             }
+            catch (NullReferenceException error)
+            {
+                Utility.ShowErrorMessage(error.Message, "No Path Selected.");
+            }
         }
 
         private void MovePathBtn2_Click(object sender, EventArgs e)
@@ -167,6 +171,10 @@ namespace RandomFileOpener
             catch (UnauthorizedAccessException error)
             {
                 Utility.ShowErrorMessage("Access Denied", error.Message);
+            }
+            catch (NullReferenceException error)
+            {
+                Utility.ShowErrorMessage(error.Message, "No Path Selected.");
             }
         }
 
