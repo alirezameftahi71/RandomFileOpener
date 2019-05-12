@@ -2,7 +2,6 @@ using RandomFileOpener.Control;
 using RandomFileOpener.Model;
 using RandomFileOpener.View;
 using System;
-using System.ComponentModel;
 using System.IO;
 using System.Windows.Forms;
 
@@ -54,7 +53,7 @@ namespace RandomFileOpener
                     "no file found by specified extention or " +
                     "no unique files found.");
             }
-            catch(ArgumentException error)
+            catch (ArgumentException error)
             {
                 Utility.ShowErrorMessage(error.Message, "No Path Selected.");
             }
@@ -74,7 +73,11 @@ namespace RandomFileOpener
             }
             catch (NullReferenceException error)
             {
-                Utility.ShowErrorMessage(error.Message, "No File is Selected to be deleted.");
+                Utility.ShowErrorMessage(error.Message, "No File is selected.");
+            }
+            catch (OperationCanceledException error)
+            {
+                Utility.ShowInformationMessage(error.Message, "Operation was Canceled.");
             }
         }
 
@@ -87,7 +90,7 @@ namespace RandomFileOpener
             }
             catch (NullReferenceException error)
             {
-                Utility.ShowErrorMessage(error.Message, "No Item Selected to be removed from the list.");
+                Utility.ShowErrorMessage(error.Message, "No File is selected.");
             }
         }
 
@@ -95,12 +98,12 @@ namespace RandomFileOpener
         {
             try
             {
-                FileItem fileItem = Utility.GetSelectedFileItem((int)this.FilesListBox.SelectedValue);
-                ActionManager.ShowInExplorer(fileItem.Path);
+                string fileItem = Utility.GetSelectedFileItem((int)this.FilesListBox.SelectedValue).Path;
+                ActionManager.ShowInExplorer(fileItem);
             }
             catch (NullReferenceException error)
             {
-                Utility.ShowErrorMessage(error.Message, "No File Selected to be referenced.");
+                Utility.ShowErrorMessage(error.Message, "No File is selected.");
             }
         }
 
@@ -117,17 +120,31 @@ namespace RandomFileOpener
             }
             catch (NullReferenceException error)
             {
-                Utility.ShowErrorMessage(error.Message, "No File is selected to be opened.");
-            }
-            catch (Win32Exception error)
-            {
-                Utility.ShowErrorMessage("File Not Found", error.Message);
+                Utility.ShowErrorMessage(error.Message, "No File is selected.");
             }
         }
 
-        private void ClearStackBtn_Click(object sender, EventArgs e) => OptionsManager.StackItems.Clear();
+        private void ClearStackBtn_Click(object sender, EventArgs e) 
+            => OptionsManager.StackItems.Clear();
 
         private void OptionsToolStripMenuItem_Click(object sender, EventArgs e)
             => optionsWindows.ShowDialog();
+
+        private void FilesListBox_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                string filePath = Utility.GetSelectedFileItem((int)this.FilesListBox.SelectedValue).Path;
+                ActionManager.OpenFile(filePath);
+            }
+            catch (FileNotFoundException error)
+            {
+                Utility.ShowErrorMessage("File Not Found", error.Message);
+            }
+            catch (NullReferenceException error)
+            {
+                Utility.ShowErrorMessage(error.Message, "No File is selected.");
+            }
+        }
     }
 }
