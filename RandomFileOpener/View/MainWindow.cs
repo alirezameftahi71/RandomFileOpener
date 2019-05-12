@@ -2,7 +2,6 @@ using RandomFileOpener.Control;
 using RandomFileOpener.Model;
 using RandomFileOpener.View;
 using System;
-using System.ComponentModel;
 using System.IO;
 using System.Windows.Forms;
 
@@ -74,7 +73,11 @@ namespace RandomFileOpener
             }
             catch (NullReferenceException error)
             {
-                Utility.ShowErrorMessage(error.Message, "No File is Selected to be deleted.");
+                Utility.ShowErrorMessage(error.Message, "No File is selected.");
+            }
+            catch (OperationCanceledException error)
+            {
+                Utility.ShowInformationMessage(error.Message, "Operation was Canceled.");
             }
         }
 
@@ -87,7 +90,7 @@ namespace RandomFileOpener
             }
             catch (NullReferenceException error)
             {
-                Utility.ShowErrorMessage(error.Message, "No Item Selected to be removed from the list.");
+                Utility.ShowErrorMessage(error.Message, "No File is selected.");
             }
         }
 
@@ -95,12 +98,12 @@ namespace RandomFileOpener
         {
             try
             {
-                FileItem fileItem = Utility.GetSelectedFileItem((int)this.FilesListBox.SelectedValue);
-                ActionManager.ShowInExplorer(fileItem.Path);
+                string fileItem = Utility.GetSelectedFileItem((int)this.FilesListBox.SelectedValue).Path;
+                ActionManager.ShowInExplorer(fileItem);
             }
             catch (NullReferenceException error)
             {
-                Utility.ShowErrorMessage(error.Message, "No File Selected to be referenced.");
+                Utility.ShowErrorMessage(error.Message, "No File is selected.");
             }
         }
 
@@ -117,15 +120,12 @@ namespace RandomFileOpener
             }
             catch (NullReferenceException error)
             {
-                Utility.ShowErrorMessage(error.Message, "No File is selected to be opened.");
-            }
-            catch (Win32Exception error)
-            {
-                Utility.ShowErrorMessage("File Not Found", error.Message);
+                Utility.ShowErrorMessage(error.Message, "No File is selected.");
             }
         }
 
-        private void ClearStackBtn_Click(object sender, EventArgs e) => OptionsManager.StackItems.Clear();
+        private void ClearStackBtn_Click(object sender, EventArgs e) 
+            => OptionsManager.StackItems.Clear();
 
         private void OptionsToolStripMenuItem_Click(object sender, EventArgs e)
             => optionsWindows.ShowDialog();
@@ -138,13 +138,16 @@ namespace RandomFileOpener
                 string srcPath = fileItem.Path;
                 string destPath = OptionsManager.MovePath1 + "\\" + fileItem.Name + fileItem.Extention;
                 ActionManager.MoveToPath(srcPath, destPath);
-                MessageBox.Show("Successfully moved!");
+                Utility.ShowInformationMessage("Success", $"File {fileItem.Name} Successfully moved to {destPath}.");
             }
-            catch (Exception error)
+            catch (DirectoryNotFoundException error)
             {
-                Utility.ShowErrorMessage("Fucking error happend", error.Message);
+                Utility.ShowErrorMessage("Path Not Found", error.Message);
             }
-
+            catch (UnauthorizedAccessException error)
+            {
+                Utility.ShowErrorMessage("Access Denied", error.Message);
+            }
         }
 
         private void MovePathBtn2_Click(object sender, EventArgs e)
@@ -155,13 +158,33 @@ namespace RandomFileOpener
                 string srcPath = fileItem.Path;
                 string destPath = OptionsManager.MovePath2 + "\\" + fileItem.Name + fileItem.Extention;
                 ActionManager.MoveToPath(srcPath, destPath);
-                MessageBox.Show("Successfully moved!");
+                Utility.ShowInformationMessage("Success", $"File {fileItem.Name} Successfully moved to {destPath}.");
             }
-            catch (Exception error)
+            catch (DirectoryNotFoundException error)
             {
-                Utility.ShowErrorMessage("Fucking error happened", error.Message);
+                Utility.ShowErrorMessage("Path Not Found", error.Message);
             }
+            catch (UnauthorizedAccessException error)
+            {
+                Utility.ShowErrorMessage("Access Denied", error.Message);
+            }
+        }
 
+        private void FilesListBox_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                string filePath = Utility.GetSelectedFileItem((int)this.FilesListBox.SelectedValue).Path;
+                ActionManager.OpenFile(filePath);
+            }
+            catch (FileNotFoundException error)
+            {
+                Utility.ShowErrorMessage("File Not Found", error.Message);
+            }
+            catch (NullReferenceException error)
+            {
+                Utility.ShowErrorMessage(error.Message, "No File is selected.");
+            }
         }
     }
 }

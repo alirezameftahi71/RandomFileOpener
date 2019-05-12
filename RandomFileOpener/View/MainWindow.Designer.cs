@@ -102,6 +102,7 @@ namespace RandomFileOpener
             this.FilesListBox.DisplayMember = "Name";
             this.FilesListBox.ValueMember = "Id";
             this.FilesListBox.DataSource = OptionsManager.StackItems;
+            this.FilesListBox.DoubleClick += new System.EventHandler(this.FilesListBox_DoubleClick);
             // 
             // ControlTableCnt
             // 
