@@ -1,4 +1,5 @@
 using RandomFileOpener.Control;
+using RandomFileOpener.Enum;
 using RandomFileOpener.Model;
 using RandomFileOpener.View;
 using System;
@@ -57,6 +58,10 @@ namespace RandomFileOpener
             {
                 Utility.ShowErrorMessage(error.Message, "No Path Selected.");
             }
+            catch (System.ComponentModel.Win32Exception error)
+            {
+                Utility.ShowErrorMessage(error.Message, "Application Not Found.");
+            }
         }
 
         private void DeleteBtn_Click(object sender, EventArgs e)
@@ -101,9 +106,9 @@ namespace RandomFileOpener
                 string fileItem = Utility.GetSelectedFileItem((int)this.FilesListBox.SelectedValue).Path;
                 ActionManager.ShowInExplorer(fileItem);
             }
-            catch (NullReferenceException error)
+            catch (NullReferenceException)
             {
-                Utility.ShowErrorMessage(error.Message, "No File is selected.");
+                ActionManager.ShowInExplorer(this.PathLbl.Text, ExplorerProccessMode.Open);
             }
         }
 
@@ -122,6 +127,10 @@ namespace RandomFileOpener
             {
                 Utility.ShowErrorMessage(error.Message, "No File is selected.");
             }
+            catch (System.ComponentModel.Win32Exception error)
+            {
+                Utility.ShowErrorMessage(error.Message, "Application Not Found.");
+            }
         }
 
         private void ClearStackBtn_Click(object sender, EventArgs e) 
@@ -138,7 +147,8 @@ namespace RandomFileOpener
                 string srcPath = fileItem.Path;
                 string destPath = OptionsManager.MovePath1 + "\\" + fileItem.Name + fileItem.Extention;
                 ActionManager.MoveToPath(srcPath, destPath);
-                Utility.ShowInformationMessage("Success", $"File {fileItem.Name} Successfully moved to {destPath}.");
+                OptionsManager.StackItems.Remove(fileItem);
+                Utility.ShowInformationMessage("Success", $"File {fileItem.Name} Successfully moved to {OptionsManager.MovePath1}.");
             }
             catch (DirectoryNotFoundException error)
             {
@@ -162,7 +172,8 @@ namespace RandomFileOpener
                 string srcPath = fileItem.Path;
                 string destPath = OptionsManager.MovePath2 + "\\" + fileItem.Name + fileItem.Extention;
                 ActionManager.MoveToPath(srcPath, destPath);
-                Utility.ShowInformationMessage("Success", $"File {fileItem.Name} Successfully moved to {destPath}.");
+                OptionsManager.StackItems.Remove(fileItem);
+                Utility.ShowInformationMessage("Success", $"File {fileItem.Name} Successfully moved to {OptionsManager.MovePath2}.");
             }
             catch (DirectoryNotFoundException error)
             {
@@ -193,6 +204,15 @@ namespace RandomFileOpener
             {
                 Utility.ShowErrorMessage(error.Message, "No File is selected.");
             }
+            catch (System.ComponentModel.Win32Exception error)
+            {
+                Utility.ShowErrorMessage(error.Message, "Application Not Found.");
+            }
+        }
+
+        private void MainWindow_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

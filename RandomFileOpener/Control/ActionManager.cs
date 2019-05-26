@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualBasic.FileIO;
+using RandomFileOpener.Enum;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -41,9 +42,10 @@ namespace RandomFileOpener.Control
         public static void DeleteFile(string path)
             => FileSystem.DeleteFile(path, UIOption.AllDialogs, RecycleOption.SendToRecycleBin);
 
-        public static void ShowInExplorer(string path)
-            => System.Diagnostics.Process.Start("explorer.exe", "/select, \"" + path + "\"");
+        public static void ShowInExplorer(string path, ExplorerProccessMode mode = ExplorerProccessMode.Select)
+            => System.Diagnostics.Process.Start("explorer.exe", $"/{mode}, {path}");
 
-        public static void MoveToPath(string srcPath, string destPath) => File.Move(srcPath, destPath);
+        public static void MoveToPath(string srcPath, string destPath)
+            => File.Move(srcPath, destPath);
     }
 }
