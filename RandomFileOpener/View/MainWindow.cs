@@ -80,7 +80,7 @@ namespace RandomFileOpener
             {
                 Utility.ShowErrorMessage(error.Message, "No File is selected.");
             }
-            catch (OperationCanceledException error)
+            catch (OperationCanceledException)
             {
                 // Do nothing
             }
@@ -212,7 +212,10 @@ namespace RandomFileOpener
 
         private void MainWindow_Load(object sender, EventArgs e)
         {
-
+            // Binding the listbox to a datasource here instead of .design file to prevent design time issues
+            this.FilesListBox.DataSource = OptionsManager.StackItems;
+            this.FilesListBox.DisplayMember = "Name";
+            this.FilesListBox.ValueMember = "Id";
         }
     }
 }

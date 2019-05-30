@@ -1,4 +1,6 @@
-﻿namespace RandomFileOpener.Model
+﻿using System.ComponentModel;
+
+namespace RandomFileOpener.Model
 {
     public class FileItem
     {

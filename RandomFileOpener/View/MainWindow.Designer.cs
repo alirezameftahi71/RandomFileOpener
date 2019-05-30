@@ -1,6 +1,4 @@
-using RandomFileOpener.Control;
-
-namespace RandomFileOpener
+﻿namespace RandomFileOpener
 {
     partial class MainWindow
     {
@@ -103,9 +101,6 @@ namespace RandomFileOpener
             this.FilesListBox.Name = "FilesListBox";
             this.FilesListBox.Size = new System.Drawing.Size(627, 198);
             this.FilesListBox.TabIndex = 1;
-            this.FilesListBox.DisplayMember = "Name";
-            this.FilesListBox.ValueMember = "Id";
-            this.FilesListBox.DataSource = OptionsManager.StackItems;
             this.FilesListBox.DoubleClick += new System.EventHandler(this.FilesListBox_DoubleClick);
             // 
             // ControlTableCnt
