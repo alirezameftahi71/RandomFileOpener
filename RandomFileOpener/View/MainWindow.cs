@@ -82,7 +82,7 @@ namespace RandomFileOpener
             }
             catch (OperationCanceledException error)
             {
-                Utility.ShowInformationMessage(error.Message, "Operation was Canceled.");
+                // Do nothing
             }
         }
 
