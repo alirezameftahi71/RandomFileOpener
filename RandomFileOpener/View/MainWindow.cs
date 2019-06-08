@@ -216,6 +216,8 @@ namespace RandomFileOpener
             this.FilesListBox.DataSource = OptionsManager.StackItems;
             this.FilesListBox.DisplayMember = "Name";
             this.FilesListBox.ValueMember = "Id";
+
+            this.PathLbl.Text = OptionsManager.MainPath;
         }
     }
 }
