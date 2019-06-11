@@ -12,7 +12,7 @@ namespace RandomFileOpener.Control
         public static bool SearchSubDir { get; set; }
         public static bool SearchUnique { get; set; }
         public static string ValidFileExtentions { get; set; }
-        public static string ReadPath { get; set; } = @"G:\Temp";
+        public static string MainPath { get; set; }
         public static string MovePath1 { get; set; }
         public static string MovePath2 { get; set; }
     }

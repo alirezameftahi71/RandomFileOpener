@@ -34,5 +34,15 @@ namespace RandomFileOpener.View
             OptionsManager.MovePath2 = this.MovePathTbox2.Text;
             this.Close();
         }
+
+        private void Path1BrowserBtn_Click(object sender, EventArgs e)
+        {
+            this.MovePathTbox1.Text = ActionManager.GetDirectoryPath(this.MovePathTbox1.Text);
+        }
+
+        private void Path2BrowserBtn_Click(object sender, EventArgs e)
+        {
+            this.MovePathTbox2.Text = ActionManager.GetDirectoryPath(this.MovePathTbox2.Text);
+        }
     }
 }
