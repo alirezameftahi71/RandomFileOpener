@@ -8,9 +8,9 @@ using System.Windows.Forms;
 
 namespace RandomFileOpener
 {
-    public partial class MainWindow:Form
+    public partial class MainWindow : Form
     {
-        private static OptionsWindows optionsWindows = new OptionsWindows();
+        private static readonly OptionsWindows optionsWindows = new OptionsWindows();
         public MainWindow() => this.InitializeComponent();
 
         private void BrowseBtn_Click(object sender, EventArgs e)
@@ -133,7 +133,7 @@ namespace RandomFileOpener
             }
         }
 
-        private void ClearStackBtn_Click(object sender, EventArgs e) 
+        private void ClearStackBtn_Click(object sender, EventArgs e)
             => OptionsManager.StackItems.Clear();
 
         private void OptionsToolStripMenuItem_Click(object sender, EventArgs e)
