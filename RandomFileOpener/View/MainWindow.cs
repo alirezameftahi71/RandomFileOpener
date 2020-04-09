@@ -34,7 +34,10 @@ namespace RandomFileOpener
                     Path = filePath,
                 });
                 this.FilesListBox.SelectedIndex = this.FilesListBox.Items.Count - 1;
-                ActionManager.OpenFile(filePath);
+                if (OptionsManager.InstantOpen)
+                {
+                    ActionManager.OpenFile(filePath);
+                }
             }
             catch (UnauthorizedAccessException error)
             {

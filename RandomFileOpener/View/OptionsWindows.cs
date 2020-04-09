@@ -18,6 +18,9 @@ namespace RandomFileOpener.View
             this.SearchUniqueOffRdb.Checked = !OptionsManager.SearchUnique;
             this.SearchUniqueOnRdb.Checked = OptionsManager.SearchUnique;
 
+            this.InstantOpenOffRdb.Checked = !OptionsManager.InstantOpen;
+            this.InstantOpenOnRdb.Checked = OptionsManager.InstantOpen;
+
             this.filterFormatTbx.Text = OptionsManager.ValidFileExtentions;
 
             this.MovePathTbox1.Text = OptionsManager.MovePath1;
@@ -29,6 +32,7 @@ namespace RandomFileOpener.View
         {
             OptionsManager.SearchUnique = this.SearchUniqueOnRdb.Checked;
             OptionsManager.SearchSubDir = this.SearchSubdirOnRdb.Checked;
+            OptionsManager.InstantOpen = this.InstantOpenOnRdb.Checked;
             OptionsManager.ValidFileExtentions = this.filterFormatTbx.Text;
             OptionsManager.MovePath1 = this.MovePathTbox1.Text;
             OptionsManager.MovePath2 = this.MovePathTbox2.Text;
