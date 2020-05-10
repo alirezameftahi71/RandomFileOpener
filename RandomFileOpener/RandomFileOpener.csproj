@@ -86,6 +86,7 @@
     <Compile Include="Control\OptionsManager.cs" />
     <Compile Include="Control\Utility.cs" />
     <Compile Include="Model\FileItem.cs" />
+    <Compile Include="Settings.cs" />
     <Compile Include="View\OptionsWindows.cs">
       <SubType>Form</SubType>
     </Compile>

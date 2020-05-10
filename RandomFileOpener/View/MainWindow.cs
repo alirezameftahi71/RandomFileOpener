@@ -11,30 +11,34 @@ namespace RandomFileOpener
     public partial class MainWindow : Form
     {
         private static readonly OptionsWindows optionsWindows = new OptionsWindows();
-        public MainWindow() => this.InitializeComponent();
+        public MainWindow() 
+            => this.InitializeComponent();
 
         private void BrowseBtn_Click(object sender, EventArgs e)
-            => this.PathLbl.Text = ActionManager.GetDirectoryPath(this.PathLbl.Text);
+        {
+            OptionsManager.Instance.MainPath = ActionManager.GetDirectoryPath(this.PathLbl.Text);
+            this.PathLbl.Text = OptionsManager.Instance.MainPath;
+        }
 
         private void RandomBtn_Click(object sender, EventArgs e)
         {
-            string[] validExtentions = Utility.GetValidatedFileFormats(OptionsManager.ValidFileExtentions);
+            string[] validExtentions = Utility.GetValidatedFileFormats(OptionsManager.Instance.ValidFileExtentions);
             try
             {
-                SearchOption searchOption = OptionsManager.SearchSubDir == true ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly;
-                bool uniqueSelection = OptionsManager.SearchUnique;
+                SearchOption searchOption = OptionsManager.Instance.SearchSubDir == true ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly;
+                bool uniqueSelection = OptionsManager.Instance.SearchUnique;
                 string directoryPath = this.PathLbl.Text;
                 string filePath = ActionManager.SelectRandomFile(directoryPath, validExtentions, searchOption, uniqueSelection);
                 string fileName = Path.GetFileNameWithoutExtension(filePath);
                 string fileExtention = Path.GetExtension(filePath);
-                OptionsManager.StackItems.Add(new FileItem()
+                OptionsManager.Instance.StackItems.Add(new FileItem()
                 {
                     Name = fileName,
                     Extention = fileExtention,
                     Path = filePath,
                 });
                 this.FilesListBox.SelectedIndex = this.FilesListBox.Items.Count - 1;
-                if (OptionsManager.InstantOpen)
+                if (OptionsManager.Instance.InstantOpen)
                 {
                     ActionManager.OpenFile(filePath);
                 }
@@ -73,7 +77,7 @@ namespace RandomFileOpener
             {
                 FileItem fileItem = Utility.GetSelectedFileItem((int)this.FilesListBox.SelectedValue);
                 ActionManager.DeleteFile(fileItem.Path);
-                OptionsManager.StackItems.Remove(fileItem);
+                OptionsManager.Instance.StackItems.Remove(fileItem);
             }
             catch (FileNotFoundException error)
             {
@@ -94,7 +98,7 @@ namespace RandomFileOpener
             try
             {
                 FileItem fileItem = Utility.GetSelectedFileItem((int)this.FilesListBox.SelectedValue);
-                OptionsManager.StackItems.Remove(fileItem);
+                OptionsManager.Instance.StackItems.Remove(fileItem);
             }
             catch (NullReferenceException error)
             {
@@ -137,7 +141,7 @@ namespace RandomFileOpener
         }
 
         private void ClearStackBtn_Click(object sender, EventArgs e)
-            => OptionsManager.StackItems.Clear();
+            => OptionsManager.Instance.StackItems.Clear();
 
         private void OptionsToolStripMenuItem_Click(object sender, EventArgs e)
             => optionsWindows.ShowDialog();
@@ -148,10 +152,10 @@ namespace RandomFileOpener
             {
                 FileItem fileItem = Utility.GetSelectedFileItem((int)this.FilesListBox.SelectedValue);
                 string srcPath = fileItem.Path;
-                string destPath = OptionsManager.MovePath1 + "\\" + fileItem.Name + fileItem.Extention;
+                string destPath = OptionsManager.Instance.MovePath1 + "\\" + fileItem.Name + fileItem.Extention;
                 ActionManager.MoveToPath(srcPath, destPath);
-                OptionsManager.StackItems.Remove(fileItem);
-                Utility.ShowInformationMessage("Success", $"File {fileItem.Name} Successfully moved to {OptionsManager.MovePath1}.");
+                OptionsManager.Instance.StackItems.Remove(fileItem);
+                Utility.ShowInformationMessage("Success", $"File {fileItem.Name} Successfully moved to {OptionsManager.Instance.MovePath1}.");
             }
             catch (DirectoryNotFoundException error)
             {
@@ -173,10 +177,10 @@ namespace RandomFileOpener
             {
                 FileItem fileItem = Utility.GetSelectedFileItem((int)this.FilesListBox.SelectedValue);
                 string srcPath = fileItem.Path;
-                string destPath = OptionsManager.MovePath2 + "\\" + fileItem.Name + fileItem.Extention;
+                string destPath = OptionsManager.Instance.MovePath2 + "\\" + fileItem.Name + fileItem.Extention;
                 ActionManager.MoveToPath(srcPath, destPath);
-                OptionsManager.StackItems.Remove(fileItem);
-                Utility.ShowInformationMessage("Success", $"File {fileItem.Name} Successfully moved to {OptionsManager.MovePath2}.");
+                OptionsManager.Instance.StackItems.Remove(fileItem);
+                Utility.ShowInformationMessage("Success", $"File {fileItem.Name} Successfully moved to {OptionsManager.Instance.MovePath2}.");
             }
             catch (DirectoryNotFoundException error)
             {
@@ -216,11 +220,16 @@ namespace RandomFileOpener
         private void MainWindow_Load(object sender, EventArgs e)
         {
             // Binding the listbox to a datasource here instead of .design file to prevent design time issues
-            this.FilesListBox.DataSource = OptionsManager.StackItems;
+            this.FilesListBox.DataSource = OptionsManager.Instance.StackItems;
             this.FilesListBox.DisplayMember = "Name";
             this.FilesListBox.ValueMember = "Id";
 
-            this.PathLbl.Text = OptionsManager.MainPath;
+            this.PathLbl.Text = OptionsManager.Instance.MainPath;
+        }
+
+        private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            OptionsManager.StoreLatestSettings();
         }
     }
 }

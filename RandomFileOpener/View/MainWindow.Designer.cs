@@ -306,6 +306,7 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "MainWindow";
             this.Text = "Random File Opener";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainWindow_FormClosing);
             this.Load += new System.EventHandler(this.MainWindow_Load);
             this.ListSplitCnt.Panel1.ResumeLayout(false);
             this.ListSplitCnt.Panel2.ResumeLayout(false);

@@ -19,6 +19,6 @@ namespace RandomFileOpener.Control
             => !string.IsNullOrWhiteSpace(userInput) ? userInput.Split(',') : (new string[] { "*.*" });
 
         public static FileItem GetSelectedFileItem(int id)
-            => OptionsManager.StackItems.Where(x => x.Id == id).FirstOrDefault();
+            => OptionsManager.Instance.StackItems.Where(x => x.Id == id).FirstOrDefault();
     }
 }

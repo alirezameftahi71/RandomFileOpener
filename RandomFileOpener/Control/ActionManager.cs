@@ -17,13 +17,14 @@ namespace RandomFileOpener.Control
                 .ToArray();
             if (uniqueSelection)
             {
-                List<string> filesInStack = OptionsManager.StackItems.Select(x => x.Path).ToList();
+                List<string> filesInStack = OptionsManager.Instance.StackItems.Select(x => x.Path).ToList();
                 files = files.Where(x => !filesInStack.Contains(x)).ToArray();
             }
             return files[new Random().Next(files.Length)];
         }
 
-        public static void OpenFile(string path) => System.Diagnostics.Process.Start(path);
+        public static void OpenFile(string path) 
+            => System.Diagnostics.Process.Start(path);
 
         public static string GetDirectoryPath(string latestPath)
         {
