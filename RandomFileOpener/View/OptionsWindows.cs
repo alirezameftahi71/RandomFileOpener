@@ -4,9 +4,15 @@ using System.Windows.Forms;
 
 namespace RandomFileOpener.View
 {
-    public partial class OptionsWindows:Form
+    public partial class OptionsWindows : Form
     {
-        public OptionsWindows() => this.InitializeComponent();
+        private MainWindow mainWindow;
+
+        public OptionsWindows(Form mainWindow)
+        {
+            this.mainWindow = mainWindow as MainWindow;
+            this.InitializeComponent();
+        }
 
         // Load latest saved setting on load
         private void OptionsWindows_Load(object sender, EventArgs e)
@@ -21,10 +27,13 @@ namespace RandomFileOpener.View
             this.InstantOpenOffRdb.Checked = !OptionsManager.Instance.InstantOpen;
             this.InstantOpenOnRdb.Checked = OptionsManager.Instance.InstantOpen;
 
-            this.filterFormatTbx.Text = OptionsManager.Instance.ValidFileExtentions;
+            this.FilterFormatTbx.Text = OptionsManager.Instance.ValidFileExtentions;
 
-            this.MovePathTbox1.Text = OptionsManager.Instance.MovePath1;
-            this.MovePathTbox2.Text = OptionsManager.Instance.MovePath2;
+            this.MovePathLabel1.Text = OptionsManager.Instance.MovePath1;
+            this.MovePathLabel2.Text = OptionsManager.Instance.MovePath2;
+
+            this.MovePathTbox1.Text = OptionsManager.Instance.MovePathName1;
+            this.MovePathTbox2.Text = OptionsManager.Instance.MovePathName2;
         }
 
         // Save setting
@@ -33,17 +42,20 @@ namespace RandomFileOpener.View
             OptionsManager.Instance.SearchUnique = this.SearchUniqueOnRdb.Checked;
             OptionsManager.Instance.SearchSubDir = this.SearchSubdirOnRdb.Checked;
             OptionsManager.Instance.InstantOpen = this.InstantOpenOnRdb.Checked;
-            OptionsManager.Instance.ValidFileExtentions = this.filterFormatTbx.Text;
-            OptionsManager.Instance.MovePath1 = this.MovePathTbox1.Text;
-            OptionsManager.Instance.MovePath2 = this.MovePathTbox2.Text;
-            this.Close();
+            OptionsManager.Instance.ValidFileExtentions = this.FilterFormatTbx.Text;
+            OptionsManager.Instance.MovePath1 = this.MovePathLabel1.Text;
+            OptionsManager.Instance.MovePath2 = this.MovePathLabel2.Text;
+            OptionsManager.Instance.MovePathName1 = this.MovePathTbox1.Text;
+            OptionsManager.Instance.MovePathName2 = this.MovePathTbox2.Text;
+            this.mainWindow.UpdateMoveToPathButtonsLabel();
+            this.Dispose();
         }
 
         private void Path1BrowserBtn_Click(object sender, EventArgs e)
-            => this.MovePathTbox1.Text = ActionManager.GetDirectoryPath(this.MovePathTbox1.Text);
-        
+            => this.MovePathLabel1.Text = ActionManager.GetDirectoryPath(this.MovePathLabel1.Text);
+
 
         private void Path2BrowserBtn_Click(object sender, EventArgs e)
-            => this.MovePathTbox2.Text = ActionManager.GetDirectoryPath(this.MovePathTbox2.Text);
+            => this.MovePathLabel2.Text = ActionManager.GetDirectoryPath(this.MovePathLabel2.Text);
     }
 }

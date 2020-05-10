@@ -106,5 +106,29 @@ namespace RandomFileOpener.Properties {
                 this["ValidFileExtentions"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string MovePathBtnLabel1 {
+            get {
+                return ((string)(this["MovePathBtnLabel1"]));
+            }
+            set {
+                this["MovePathBtnLabel1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string MovePathBtnLabel2 {
+            get {
+                return ((string)(this["MovePathBtnLabel2"]));
+            }
+            set {
+                this["MovePathBtnLabel2"] = value;
+            }
+        }
     }
 }

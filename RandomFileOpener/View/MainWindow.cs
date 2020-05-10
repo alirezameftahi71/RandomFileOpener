@@ -10,9 +10,12 @@ namespace RandomFileOpener
 {
     public partial class MainWindow : Form
     {
-        private static readonly OptionsWindows optionsWindows = new OptionsWindows();
+        private Form optionsWindows;
         public MainWindow()
-            => this.InitializeComponent();
+        {
+            this.InitializeComponent();
+            this.UpdateMoveToPathButtonsLabel();
+        }
 
         private void BrowseBtn_Click(object sender, EventArgs e)
         {
@@ -69,6 +72,14 @@ namespace RandomFileOpener
             {
                 Utility.ShowErrorMessage(error.Message, "Application Not Found.");
             }
+        }
+
+        internal void UpdateMoveToPathButtonsLabel()
+        {
+            this.MovePathBtn1.Text = string.IsNullOrWhiteSpace(OptionsManager.Instance.MovePathName1) ?
+                            "Move To Path #1" : OptionsManager.Instance.MovePathName1;
+            this.MovePathBtn2.Text = string.IsNullOrWhiteSpace(OptionsManager.Instance.MovePathName2) ?
+                            "Move To Path #2" : OptionsManager.Instance.MovePathName2;
         }
 
         private void DeleteBtn_Click(object sender, EventArgs e)
@@ -144,7 +155,10 @@ namespace RandomFileOpener
             => OptionsManager.Instance.StackItems.Clear();
 
         private void OptionsToolStripMenuItem_Click(object sender, EventArgs e)
-            => optionsWindows.ShowDialog();
+        {
+            this.optionsWindows = new OptionsWindows(this);
+            this.optionsWindows.ShowDialog();
+        }
 
         private void MovePathBtn1_Click(object sender, EventArgs e)
         {

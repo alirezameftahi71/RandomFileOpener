@@ -36,21 +36,25 @@
             this.SearchUniqueOnRdb = new System.Windows.Forms.RadioButton();
             this.SearchUniqueOffRdb = new System.Windows.Forms.RadioButton();
             this.filterTypeGroupBox = new System.Windows.Forms.GroupBox();
-            this.filterFormatTbx = new System.Windows.Forms.TextBox();
+            this.FilterFormatTbx = new System.Windows.Forms.TextBox();
             this.exampleFilterExtensionLbl = new System.Windows.Forms.Label();
             this.OptionsFooterPanelCnt = new System.Windows.Forms.Panel();
             this.OptionsOKBtn = new System.Windows.Forms.Button();
             this.MoveGroupBox1 = new System.Windows.Forms.GroupBox();
             this.Path1BrowserBtn = new System.Windows.Forms.Button();
-            this.MovePathTbox1 = new System.Windows.Forms.TextBox();
             this.MovePathLbl1 = new System.Windows.Forms.Label();
             this.MoveGroupBox2 = new System.Windows.Forms.GroupBox();
             this.Path2BrowserBtn = new System.Windows.Forms.Button();
-            this.MovePathTbox2 = new System.Windows.Forms.TextBox();
             this.MovePathLbl2 = new System.Windows.Forms.Label();
             this.InstantOpenGroupBox = new System.Windows.Forms.GroupBox();
-            this.InstantOpenOffRdb = new System.Windows.Forms.RadioButton();
             this.InstantOpenOnRdb = new System.Windows.Forms.RadioButton();
+            this.InstantOpenOffRdb = new System.Windows.Forms.RadioButton();
+            this.MovePathLabel1 = new System.Windows.Forms.Label();
+            this.MovePathLabel2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.MovePathTbox1 = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.MovePathTbox2 = new System.Windows.Forms.TextBox();
             this.ParentTableCnt.SuspendLayout();
             this.SearchSubDirGroupBox.SuspendLayout();
             this.SearchUniqueGroupBox.SuspendLayout();
@@ -92,11 +96,11 @@
             this.SearchSubDirGroupBox.Controls.Add(this.SearchSubdirOnRdb);
             this.SearchSubDirGroupBox.Controls.Add(this.SearchSubdirOffRdb);
             this.SearchSubDirGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SearchSubDirGroupBox.Location = new System.Drawing.Point(186, 2);
+            this.SearchSubDirGroupBox.Location = new System.Drawing.Point(187, 2);
             this.SearchSubDirGroupBox.Margin = new System.Windows.Forms.Padding(2);
             this.SearchSubDirGroupBox.Name = "SearchSubDirGroupBox";
             this.SearchSubDirGroupBox.Padding = new System.Windows.Forms.Padding(2);
-            this.SearchSubDirGroupBox.Size = new System.Drawing.Size(180, 102);
+            this.SearchSubDirGroupBox.Size = new System.Drawing.Size(181, 102);
             this.SearchSubDirGroupBox.TabIndex = 0;
             this.SearchSubDirGroupBox.TabStop = false;
             this.SearchSubDirGroupBox.Text = "Search Subdirectories";
@@ -134,7 +138,7 @@
             this.SearchUniqueGroupBox.Margin = new System.Windows.Forms.Padding(2);
             this.SearchUniqueGroupBox.Name = "SearchUniqueGroupBox";
             this.SearchUniqueGroupBox.Padding = new System.Windows.Forms.Padding(2);
-            this.SearchUniqueGroupBox.Size = new System.Drawing.Size(180, 102);
+            this.SearchUniqueGroupBox.Size = new System.Drawing.Size(181, 102);
             this.SearchUniqueGroupBox.TabIndex = 1;
             this.SearchUniqueGroupBox.TabStop = false;
             this.SearchUniqueGroupBox.Text = "Unique Selection";
@@ -166,7 +170,7 @@
             // filterTypeGroupBox
             // 
             this.ParentTableCnt.SetColumnSpan(this.filterTypeGroupBox, 3);
-            this.filterTypeGroupBox.Controls.Add(this.filterFormatTbx);
+            this.filterTypeGroupBox.Controls.Add(this.FilterFormatTbx);
             this.filterTypeGroupBox.Controls.Add(this.exampleFilterExtensionLbl);
             this.filterTypeGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.filterTypeGroupBox.Location = new System.Drawing.Point(2, 108);
@@ -178,15 +182,15 @@
             this.filterTypeGroupBox.TabStop = false;
             this.filterTypeGroupBox.Text = "Filter File Format";
             // 
-            // filterFormatTbx
+            // FilterFormatTbx
             // 
-            this.filterFormatTbx.Dock = System.Windows.Forms.DockStyle.Top;
-            this.filterFormatTbx.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.filterFormatTbx.Location = new System.Drawing.Point(2, 29);
-            this.filterFormatTbx.Margin = new System.Windows.Forms.Padding(2);
-            this.filterFormatTbx.Name = "filterFormatTbx";
-            this.filterFormatTbx.Size = new System.Drawing.Size(547, 27);
-            this.filterFormatTbx.TabIndex = 24;
+            this.FilterFormatTbx.Dock = System.Windows.Forms.DockStyle.Top;
+            this.FilterFormatTbx.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FilterFormatTbx.Location = new System.Drawing.Point(2, 29);
+            this.FilterFormatTbx.Margin = new System.Windows.Forms.Padding(2);
+            this.FilterFormatTbx.Name = "FilterFormatTbx";
+            this.FilterFormatTbx.Size = new System.Drawing.Size(547, 27);
+            this.FilterFormatTbx.TabIndex = 24;
             // 
             // exampleFilterExtensionLbl
             // 
@@ -225,8 +229,10 @@
             // MoveGroupBox1
             // 
             this.ParentTableCnt.SetColumnSpan(this.MoveGroupBox1, 3);
-            this.MoveGroupBox1.Controls.Add(this.Path1BrowserBtn);
             this.MoveGroupBox1.Controls.Add(this.MovePathTbox1);
+            this.MoveGroupBox1.Controls.Add(this.label1);
+            this.MoveGroupBox1.Controls.Add(this.MovePathLabel1);
+            this.MoveGroupBox1.Controls.Add(this.Path1BrowserBtn);
             this.MoveGroupBox1.Controls.Add(this.MovePathLbl1);
             this.MoveGroupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MoveGroupBox1.Location = new System.Drawing.Point(2, 178);
@@ -244,38 +250,31 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Path1BrowserBtn.Location = new System.Drawing.Point(5, 29);
             this.Path1BrowserBtn.Name = "Path1BrowserBtn";
-            this.Path1BrowserBtn.Size = new System.Drawing.Size(72, 27);
+            this.Path1BrowserBtn.Size = new System.Drawing.Size(68, 29);
             this.Path1BrowserBtn.TabIndex = 26;
             this.Path1BrowserBtn.Text = "Browser";
             this.Path1BrowserBtn.UseVisualStyleBackColor = true;
             this.Path1BrowserBtn.Click += new System.EventHandler(this.Path1BrowserBtn_Click);
             // 
-            // MovePathTbox1
-            // 
-            this.MovePathTbox1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.MovePathTbox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MovePathTbox1.Location = new System.Drawing.Point(82, 29);
-            this.MovePathTbox1.Margin = new System.Windows.Forms.Padding(2);
-            this.MovePathTbox1.Name = "MovePathTbox1";
-            this.MovePathTbox1.Size = new System.Drawing.Size(467, 27);
-            this.MovePathTbox1.TabIndex = 25;
-            // 
             // MovePathLbl1
             // 
-            this.MovePathLbl1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.MovePathLbl1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.MovePathLbl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MovePathLbl1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.MovePathLbl1.Location = new System.Drawing.Point(2, 15);
             this.MovePathLbl1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.MovePathLbl1.Name = "MovePathLbl1";
-            this.MovePathLbl1.Size = new System.Drawing.Size(547, 14);
+            this.MovePathLbl1.Size = new System.Drawing.Size(275, 64);
             this.MovePathLbl1.TabIndex = 24;
             this.MovePathLbl1.Text = "ie: D:\\\\";
             // 
             // MoveGroupBox2
             // 
             this.ParentTableCnt.SetColumnSpan(this.MoveGroupBox2, 3);
-            this.MoveGroupBox2.Controls.Add(this.Path2BrowserBtn);
             this.MoveGroupBox2.Controls.Add(this.MovePathTbox2);
+            this.MoveGroupBox2.Controls.Add(this.label2);
+            this.MoveGroupBox2.Controls.Add(this.MovePathLabel2);
+            this.MoveGroupBox2.Controls.Add(this.Path2BrowserBtn);
             this.MoveGroupBox2.Controls.Add(this.MovePathLbl2);
             this.MoveGroupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MoveGroupBox2.Location = new System.Drawing.Point(2, 263);
@@ -293,30 +292,21 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Path2BrowserBtn.Location = new System.Drawing.Point(5, 30);
             this.Path2BrowserBtn.Name = "Path2BrowserBtn";
-            this.Path2BrowserBtn.Size = new System.Drawing.Size(72, 27);
+            this.Path2BrowserBtn.Size = new System.Drawing.Size(68, 28);
             this.Path2BrowserBtn.TabIndex = 27;
             this.Path2BrowserBtn.Text = "Browser";
             this.Path2BrowserBtn.UseVisualStyleBackColor = true;
             this.Path2BrowserBtn.Click += new System.EventHandler(this.Path2BrowserBtn_Click);
             // 
-            // MovePathTbox2
-            // 
-            this.MovePathTbox2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.MovePathTbox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MovePathTbox2.Location = new System.Drawing.Point(82, 29);
-            this.MovePathTbox2.Margin = new System.Windows.Forms.Padding(2);
-            this.MovePathTbox2.Name = "MovePathTbox2";
-            this.MovePathTbox2.Size = new System.Drawing.Size(467, 27);
-            this.MovePathTbox2.TabIndex = 26;
-            // 
             // MovePathLbl2
             // 
-            this.MovePathLbl2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.MovePathLbl2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.MovePathLbl2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MovePathLbl2.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.MovePathLbl2.Location = new System.Drawing.Point(2, 15);
             this.MovePathLbl2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.MovePathLbl2.Name = "MovePathLbl2";
-            this.MovePathLbl2.Size = new System.Drawing.Size(547, 14);
+            this.MovePathLbl2.Size = new System.Drawing.Size(275, 64);
             this.MovePathLbl2.TabIndex = 25;
             this.MovePathLbl2.Text = "ie: C:\\\\";
             // 
@@ -325,12 +315,22 @@
             this.InstantOpenGroupBox.Controls.Add(this.InstantOpenOnRdb);
             this.InstantOpenGroupBox.Controls.Add(this.InstantOpenOffRdb);
             this.InstantOpenGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.InstantOpenGroupBox.Location = new System.Drawing.Point(371, 3);
+            this.InstantOpenGroupBox.Location = new System.Drawing.Point(373, 3);
             this.InstantOpenGroupBox.Name = "InstantOpenGroupBox";
-            this.InstantOpenGroupBox.Size = new System.Drawing.Size(181, 100);
+            this.InstantOpenGroupBox.Size = new System.Drawing.Size(179, 100);
             this.InstantOpenGroupBox.TabIndex = 27;
             this.InstantOpenGroupBox.TabStop = false;
             this.InstantOpenGroupBox.Text = "Instant Open";
+            // 
+            // InstantOpenOnRdb
+            // 
+            this.InstantOpenOnRdb.AutoSize = true;
+            this.InstantOpenOnRdb.Location = new System.Drawing.Point(6, 54);
+            this.InstantOpenOnRdb.Name = "InstantOpenOnRdb";
+            this.InstantOpenOnRdb.Size = new System.Drawing.Size(39, 17);
+            this.InstantOpenOnRdb.TabIndex = 1;
+            this.InstantOpenOnRdb.Text = "On";
+            this.InstantOpenOnRdb.UseVisualStyleBackColor = true;
             // 
             // InstantOpenOffRdb
             // 
@@ -344,15 +344,73 @@
             this.InstantOpenOffRdb.Text = "Off";
             this.InstantOpenOffRdb.UseVisualStyleBackColor = true;
             // 
-            // InstantOpenOnRdb
+            // MovePathLabel1
             // 
-            this.InstantOpenOnRdb.AutoSize = true;
-            this.InstantOpenOnRdb.Location = new System.Drawing.Point(6, 54);
-            this.InstantOpenOnRdb.Name = "InstantOpenOnRdb";
-            this.InstantOpenOnRdb.Size = new System.Drawing.Size(39, 17);
-            this.InstantOpenOnRdb.TabIndex = 1;
-            this.InstantOpenOnRdb.Text = "On";
-            this.InstantOpenOnRdb.UseVisualStyleBackColor = true;
+            this.MovePathLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.MovePathLabel1.Location = new System.Drawing.Point(84, 29);
+            this.MovePathLabel1.Name = "MovePathLabel1";
+            this.MovePathLabel1.Size = new System.Drawing.Size(193, 29);
+            this.MovePathLabel1.TabIndex = 27;
+            this.MovePathLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // MovePathLabel2
+            // 
+            this.MovePathLabel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.MovePathLabel2.Location = new System.Drawing.Point(84, 31);
+            this.MovePathLabel2.Name = "MovePathLabel2";
+            this.MovePathLabel2.Size = new System.Drawing.Size(193, 27);
+            this.MovePathLabel2.TabIndex = 28;
+            this.MovePathLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label1
+            // 
+            this.label1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label1.Location = new System.Drawing.Point(282, 15);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(267, 64);
+            this.label1.TabIndex = 28;
+            this.label1.Text = "Move Button Label 1";
+            // 
+            // MovePathTbox1
+            // 
+            this.MovePathTbox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.MovePathTbox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MovePathTbox1.Location = new System.Drawing.Point(285, 31);
+            this.MovePathTbox1.Margin = new System.Windows.Forms.Padding(2);
+            this.MovePathTbox1.Name = "MovePathTbox1";
+            this.MovePathTbox1.Size = new System.Drawing.Size(252, 27);
+            this.MovePathTbox1.TabIndex = 29;
+            this.MovePathTbox1.Text = "Move To Path #1";
+            // 
+            // label2
+            // 
+            this.label2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label2.Location = new System.Drawing.Point(281, 15);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(268, 64);
+            this.label2.TabIndex = 29;
+            this.label2.Text = "Move Button Label 2";
+            // 
+            // MovePathTbox2
+            // 
+            this.MovePathTbox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.MovePathTbox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MovePathTbox2.Location = new System.Drawing.Point(284, 31);
+            this.MovePathTbox2.Margin = new System.Windows.Forms.Padding(2);
+            this.MovePathTbox2.Name = "MovePathTbox2";
+            this.MovePathTbox2.Size = new System.Drawing.Size(253, 27);
+            this.MovePathTbox2.TabIndex = 30;
+            this.MovePathTbox2.Text = "Move To Path #2";
             // 
             // OptionsWindows
             // 
@@ -396,18 +454,22 @@
         private System.Windows.Forms.GroupBox filterTypeGroupBox;
         private System.Windows.Forms.Panel OptionsFooterPanelCnt;
         private System.Windows.Forms.Button OptionsOKBtn;
-        private System.Windows.Forms.TextBox filterFormatTbx;
+        private System.Windows.Forms.TextBox FilterFormatTbx;
         private System.Windows.Forms.Label exampleFilterExtensionLbl;
         private System.Windows.Forms.GroupBox MoveGroupBox1;
         private System.Windows.Forms.GroupBox MoveGroupBox2;
-        private System.Windows.Forms.TextBox MovePathTbox1;
         private System.Windows.Forms.Label MovePathLbl1;
-        private System.Windows.Forms.TextBox MovePathTbox2;
         private System.Windows.Forms.Label MovePathLbl2;
         private System.Windows.Forms.Button Path1BrowserBtn;
         private System.Windows.Forms.Button Path2BrowserBtn;
         private System.Windows.Forms.GroupBox InstantOpenGroupBox;
         private System.Windows.Forms.RadioButton InstantOpenOnRdb;
         private System.Windows.Forms.RadioButton InstantOpenOffRdb;
+        private System.Windows.Forms.Label MovePathLabel1;
+        private System.Windows.Forms.Label MovePathLabel2;
+        private System.Windows.Forms.TextBox MovePathTbox1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox MovePathTbox2;
+        private System.Windows.Forms.Label label2;
     }
 }

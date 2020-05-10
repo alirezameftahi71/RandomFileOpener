@@ -25,6 +25,8 @@ namespace RandomFileOpener.Control
             this.InstantOpen = Properties.Settings.Default.InstantOpen;
             this.MainPath = Properties.Settings.Default.MainPath;
             this.MovePath1 = Properties.Settings.Default.MovePath1;
+            this.MovePathName1 = Properties.Settings.Default.MovePathBtnLabel1;
+            this.MovePathName2 = Properties.Settings.Default.MovePathBtnLabel2;
             this.MovePath2 = Properties.Settings.Default.MovePath2;
             this.ValidFileExtentions = Properties.Settings.Default.ValidFileExtentions;
         }
@@ -37,6 +39,8 @@ namespace RandomFileOpener.Control
         public string MainPath { get; set; }
         public string MovePath1 { get; set; }
         public string MovePath2 { get; set; }
+        public string MovePathName1 { get; set; }
+        public string MovePathName2 { get; set; }
 
         public static void StoreLatestSettings()
         {
@@ -47,6 +51,8 @@ namespace RandomFileOpener.Control
             Properties.Settings.Default.MovePath1 = OptionsManager.Instance.MovePath1;
             Properties.Settings.Default.MovePath2 = OptionsManager.Instance.MovePath2;
             Properties.Settings.Default.ValidFileExtentions = OptionsManager.Instance.ValidFileExtentions;
+            Properties.Settings.Default.MovePathBtnLabel1 = OptionsManager.Instance.MovePathName1;
+            Properties.Settings.Default.MovePathBtnLabel2 = OptionsManager.Instance.MovePathName2;
             Properties.Settings.Default.Save();
         }
     }

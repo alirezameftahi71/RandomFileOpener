@@ -265,7 +265,7 @@
             this.PathLbl.Name = "PathLbl";
             this.PathLbl.Size = new System.Drawing.Size(627, 35);
             this.PathLbl.TabIndex = 19;
-            this.PathLbl.Text = "C:\\";
+            this.PathLbl.Text = "i.e. C:\\\\";
             // 
             // FileMenu
             // 
@@ -339,8 +339,8 @@
         private System.Windows.Forms.MenuStrip FileMenu;
         private System.Windows.Forms.ToolStripMenuItem ToolsMenuMember;
         private System.Windows.Forms.ToolStripMenuItem OptionsMenuMemberOption;
-        private System.Windows.Forms.Button MovePathBtn2;
-        private System.Windows.Forms.Button MovePathBtn1;
+        internal System.Windows.Forms.Button MovePathBtn2;
+        internal System.Windows.Forms.Button MovePathBtn1;
     }
 }
 
