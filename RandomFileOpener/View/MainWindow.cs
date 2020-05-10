@@ -11,7 +11,7 @@ namespace RandomFileOpener
     public partial class MainWindow : Form
     {
         private static readonly OptionsWindows optionsWindows = new OptionsWindows();
-        public MainWindow() 
+        public MainWindow()
             => this.InitializeComponent();
 
         private void BrowseBtn_Click(object sender, EventArgs e)
@@ -225,11 +225,6 @@ namespace RandomFileOpener
             this.FilesListBox.ValueMember = "Id";
 
             this.PathLbl.Text = OptionsManager.Instance.MainPath;
-        }
-
-        private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            OptionsManager.StoreLatestSettings();
         }
     }
 }

@@ -13,6 +13,10 @@ namespace RandomFileOpener.Control
         {
             OptionsManager.Instance = new OptionsManager();
         }
+        ~OptionsManager()
+        {
+            OptionsManager.StoreLatestSettings();
+        }
 
         public OptionsManager()
         {
