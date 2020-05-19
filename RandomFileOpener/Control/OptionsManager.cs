@@ -29,12 +29,14 @@ namespace RandomFileOpener.Control
             this.MovePathName2 = Properties.Settings.Default.MovePathBtnLabel2;
             this.MovePath2 = Properties.Settings.Default.MovePath2;
             this.ValidFileExtentions = Properties.Settings.Default.ValidFileExtentions;
+            this.ShowInformationMessages = Properties.Settings.Default.ShowInformationMessages;
         }
 
         public BindingList<FileItem> StackItems { get; set; } = new BindingList<FileItem>();
         public bool SearchSubDir { get; set; }
         public bool SearchUnique { get; set; }
         public bool InstantOpen { get; set; }
+        public bool ShowInformationMessages { get; set; }
         public string ValidFileExtentions { get; set; }
         public string MainPath { get; set; }
         public string MovePath1 { get; set; }
@@ -53,6 +55,7 @@ namespace RandomFileOpener.Control
             Properties.Settings.Default.ValidFileExtentions = OptionsManager.Instance.ValidFileExtentions;
             Properties.Settings.Default.MovePathBtnLabel1 = OptionsManager.Instance.MovePathName1;
             Properties.Settings.Default.MovePathBtnLabel2 = OptionsManager.Instance.MovePathName2;
+            Properties.Settings.Default.ShowInformationMessages = OptionsManager.Instance.ShowInformationMessages;
             Properties.Settings.Default.Save();
         }
     }

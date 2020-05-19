@@ -34,6 +34,9 @@ namespace RandomFileOpener.View
 
             this.MovePathTbox1.Text = OptionsManager.Instance.MovePathName1;
             this.MovePathTbox2.Text = OptionsManager.Instance.MovePathName2;
+
+            this.ShowInfoMsgOffRdb.Checked = !OptionsManager.Instance.ShowInformationMessages;
+            this.ShowInfoMsgOnRdb.Checked = OptionsManager.Instance.ShowInformationMessages;
         }
 
         // Save setting
@@ -47,6 +50,7 @@ namespace RandomFileOpener.View
             OptionsManager.Instance.MovePath2 = this.MovePathLabel2.Text;
             OptionsManager.Instance.MovePathName1 = this.MovePathTbox1.Text;
             OptionsManager.Instance.MovePathName2 = this.MovePathTbox2.Text;
+            OptionsManager.Instance.ShowInformationMessages = this.ShowInfoMsgOnRdb.Checked;
             this.mainWindow.UpdateMoveToPathButtonsLabel();
             this.Dispose();
         }

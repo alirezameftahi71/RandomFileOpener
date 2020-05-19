@@ -13,7 +13,12 @@ namespace RandomFileOpener.Control
             => MessageBox.Show(message, title, MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
 
         public static void ShowInformationMessage(string title, string message)
-            => MessageBox.Show(message, title, MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+        {
+            if (OptionsManager.Instance.ShowInformationMessages)
+            {
+                MessageBox.Show(message, title, MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+            }
+        }
 
         public static string[] GetValidatedFileFormats(string userInput)
             => !string.IsNullOrWhiteSpace(userInput) ? userInput.Split(',') : (new string[] { "*.*" });

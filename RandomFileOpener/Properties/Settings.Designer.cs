@@ -130,5 +130,17 @@ namespace RandomFileOpener.Properties {
                 this["MovePathBtnLabel2"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ShowInformationMessages {
+            get {
+                return ((bool)(this["ShowInformationMessages"]));
+            }
+            set {
+                this["ShowInformationMessages"] = value;
+            }
+        }
     }
 }
