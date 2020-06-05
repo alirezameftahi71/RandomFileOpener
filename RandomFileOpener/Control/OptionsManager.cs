@@ -8,17 +8,19 @@ namespace RandomFileOpener.Control
 {
     public class OptionsManager
     {
-        public static OptionsManager Instance { get; private set; }
-        static OptionsManager()
+        private static readonly OptionsManager _instance = new OptionsManager();
+     
+        protected OptionsManager()
         {
-            OptionsManager.Instance = new OptionsManager();
+            this.ReadFromSettings();
         }
+
         ~OptionsManager()
         {
             OptionsManager.StoreLatestSettings();
         }
 
-        public OptionsManager()
+        public void ReadFromSettings()
         {
             this.SearchSubDir = Properties.Settings.Default.SearchSubDir;
             this.SearchUnique = Properties.Settings.Default.SearchUnique;
@@ -30,6 +32,11 @@ namespace RandomFileOpener.Control
             this.MovePath2 = Properties.Settings.Default.MovePath2;
             this.ValidFileExtentions = Properties.Settings.Default.ValidFileExtentions;
             this.ShowInformationMessages = Properties.Settings.Default.ShowInformationMessages;
+        }
+
+        public static OptionsManager Instance()
+        {
+            return _instance;
         }
 
         public BindingList<FileItem> StackItems { get; set; } = new BindingList<FileItem>();
@@ -46,16 +53,16 @@ namespace RandomFileOpener.Control
 
         public static void StoreLatestSettings()
         {
-            Properties.Settings.Default.SearchSubDir = OptionsManager.Instance.SearchSubDir;
-            Properties.Settings.Default.SearchUnique = OptionsManager.Instance.SearchUnique;
-            Properties.Settings.Default.InstantOpen = OptionsManager.Instance.InstantOpen;
-            Properties.Settings.Default.MainPath = OptionsManager.Instance.MainPath;
-            Properties.Settings.Default.MovePath1 = OptionsManager.Instance.MovePath1;
-            Properties.Settings.Default.MovePath2 = OptionsManager.Instance.MovePath2;
-            Properties.Settings.Default.ValidFileExtentions = OptionsManager.Instance.ValidFileExtentions;
-            Properties.Settings.Default.MovePathBtnLabel1 = OptionsManager.Instance.MovePathName1;
-            Properties.Settings.Default.MovePathBtnLabel2 = OptionsManager.Instance.MovePathName2;
-            Properties.Settings.Default.ShowInformationMessages = OptionsManager.Instance.ShowInformationMessages;
+            Properties.Settings.Default.SearchSubDir = OptionsManager._instance.SearchSubDir;
+            Properties.Settings.Default.SearchUnique = OptionsManager._instance.SearchUnique;
+            Properties.Settings.Default.InstantOpen = OptionsManager._instance.InstantOpen;
+            Properties.Settings.Default.MainPath = OptionsManager._instance.MainPath;
+            Properties.Settings.Default.MovePath1 = OptionsManager._instance.MovePath1;
+            Properties.Settings.Default.MovePath2 = OptionsManager._instance.MovePath2;
+            Properties.Settings.Default.ValidFileExtentions = OptionsManager._instance.ValidFileExtentions;
+            Properties.Settings.Default.MovePathBtnLabel1 = OptionsManager._instance.MovePathName1;
+            Properties.Settings.Default.MovePathBtnLabel2 = OptionsManager._instance.MovePathName2;
+            Properties.Settings.Default.ShowInformationMessages = OptionsManager._instance.ShowInformationMessages;
             Properties.Settings.Default.Save();
         }
     }

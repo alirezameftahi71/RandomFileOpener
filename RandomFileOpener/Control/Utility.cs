@@ -14,7 +14,7 @@ namespace RandomFileOpener.Control
 
         public static void ShowInformationMessage(string title, string message)
         {
-            if (OptionsManager.Instance.ShowInformationMessages)
+            if (OptionsManager.Instance().ShowInformationMessages)
             {
                 MessageBox.Show(message, title, MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
             }
@@ -24,6 +24,6 @@ namespace RandomFileOpener.Control
             => !string.IsNullOrWhiteSpace(userInput) ? userInput.Split(',') : (new string[] { "*.*" });
 
         public static FileItem GetSelectedFileItem(int id)
-            => OptionsManager.Instance.StackItems.Where(x => x.Id == id).FirstOrDefault();
+            => OptionsManager.Instance().StackItems.Where(x => x.Id == id).FirstOrDefault();
     }
 }

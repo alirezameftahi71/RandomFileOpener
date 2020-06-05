@@ -19,29 +19,29 @@ namespace RandomFileOpener
 
         private void BrowseBtn_Click(object sender, EventArgs e)
         {
-            OptionsManager.Instance.MainPath = ActionManager.GetDirectoryPath(this.PathLbl.Text);
-            this.PathLbl.Text = OptionsManager.Instance.MainPath;
+            OptionsManager.Instance().MainPath = ActionManager.GetDirectoryPath(this.PathLbl.Text);
+            this.PathLbl.Text = OptionsManager.Instance().MainPath;
         }
 
         private void RandomBtn_Click(object sender, EventArgs e)
         {
-            string[] validExtentions = Utility.GetValidatedFileFormats(OptionsManager.Instance.ValidFileExtentions);
+            string[] validExtentions = Utility.GetValidatedFileFormats(OptionsManager.Instance().ValidFileExtentions);
             try
             {
-                SearchOption searchOption = OptionsManager.Instance.SearchSubDir == true ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly;
-                bool uniqueSelection = OptionsManager.Instance.SearchUnique;
+                SearchOption searchOption = OptionsManager.Instance().SearchSubDir == true ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly;
+                bool uniqueSelection = OptionsManager.Instance().SearchUnique;
                 string directoryPath = this.PathLbl.Text;
                 string filePath = ActionManager.SelectRandomFile(directoryPath, validExtentions, searchOption, uniqueSelection);
                 string fileName = Path.GetFileNameWithoutExtension(filePath);
                 string fileExtention = Path.GetExtension(filePath);
-                OptionsManager.Instance.StackItems.Add(new FileItem()
+                OptionsManager.Instance().StackItems.Add(new FileItem()
                 {
                     Name = fileName,
                     Extention = fileExtention,
                     Path = filePath,
                 });
                 this.FilesListBox.SelectedIndex = this.FilesListBox.Items.Count - 1;
-                if (OptionsManager.Instance.InstantOpen)
+                if (OptionsManager.Instance().InstantOpen)
                 {
                     ActionManager.OpenFile(filePath);
                 }
@@ -76,10 +76,10 @@ namespace RandomFileOpener
 
         internal void UpdateMoveToPathButtonsLabel()
         {
-            this.MovePathBtn1.Text = string.IsNullOrWhiteSpace(OptionsManager.Instance.MovePathName1) ?
-                            "Move To Path #1" : OptionsManager.Instance.MovePathName1;
-            this.MovePathBtn2.Text = string.IsNullOrWhiteSpace(OptionsManager.Instance.MovePathName2) ?
-                            "Move To Path #2" : OptionsManager.Instance.MovePathName2;
+            this.MovePathBtn1.Text = string.IsNullOrWhiteSpace(OptionsManager.Instance().MovePathName1) ?
+                            "Move To Path #1" : OptionsManager.Instance().MovePathName1;
+            this.MovePathBtn2.Text = string.IsNullOrWhiteSpace(OptionsManager.Instance().MovePathName2) ?
+                            "Move To Path #2" : OptionsManager.Instance().MovePathName2;
         }
 
         private void DeleteBtn_Click(object sender, EventArgs e)
@@ -88,7 +88,7 @@ namespace RandomFileOpener
             {
                 FileItem fileItem = Utility.GetSelectedFileItem((int)this.FilesListBox.SelectedValue);
                 ActionManager.DeleteFile(fileItem.Path);
-                OptionsManager.Instance.StackItems.Remove(fileItem);
+                OptionsManager.Instance().StackItems.Remove(fileItem);
             }
             catch (FileNotFoundException error)
             {
@@ -109,7 +109,7 @@ namespace RandomFileOpener
             try
             {
                 FileItem fileItem = Utility.GetSelectedFileItem((int)this.FilesListBox.SelectedValue);
-                OptionsManager.Instance.StackItems.Remove(fileItem);
+                OptionsManager.Instance().StackItems.Remove(fileItem);
             }
             catch (NullReferenceException error)
             {
@@ -152,7 +152,7 @@ namespace RandomFileOpener
         }
 
         private void ClearStackBtn_Click(object sender, EventArgs e)
-            => OptionsManager.Instance.StackItems.Clear();
+            => OptionsManager.Instance().StackItems.Clear();
 
         private void OptionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -166,10 +166,10 @@ namespace RandomFileOpener
             {
                 FileItem fileItem = Utility.GetSelectedFileItem((int)this.FilesListBox.SelectedValue);
                 string srcPath = fileItem.Path;
-                string destPath = OptionsManager.Instance.MovePath1 + "\\" + fileItem.Name + fileItem.Extention;
+                string destPath = OptionsManager.Instance().MovePath1 + "\\" + fileItem.Name + fileItem.Extention;
                 ActionManager.MoveToPath(srcPath, destPath);
-                OptionsManager.Instance.StackItems.Remove(fileItem);
-                Utility.ShowInformationMessage("Success", $"File {fileItem.Name} Successfully moved to {OptionsManager.Instance.MovePath1}.");
+                OptionsManager.Instance().StackItems.Remove(fileItem);
+                Utility.ShowInformationMessage("Success", $"File {fileItem.Name} Successfully moved to {OptionsManager.Instance().MovePath1}.");
             }
             catch (DirectoryNotFoundException error)
             {
@@ -191,10 +191,10 @@ namespace RandomFileOpener
             {
                 FileItem fileItem = Utility.GetSelectedFileItem((int)this.FilesListBox.SelectedValue);
                 string srcPath = fileItem.Path;
-                string destPath = OptionsManager.Instance.MovePath2 + "\\" + fileItem.Name + fileItem.Extention;
+                string destPath = OptionsManager.Instance().MovePath2 + "\\" + fileItem.Name + fileItem.Extention;
                 ActionManager.MoveToPath(srcPath, destPath);
-                OptionsManager.Instance.StackItems.Remove(fileItem);
-                Utility.ShowInformationMessage("Success", $"File {fileItem.Name} Successfully moved to {OptionsManager.Instance.MovePath2}.");
+                OptionsManager.Instance().StackItems.Remove(fileItem);
+                Utility.ShowInformationMessage("Success", $"File {fileItem.Name} Successfully moved to {OptionsManager.Instance().MovePath2}.");
             }
             catch (DirectoryNotFoundException error)
             {
@@ -234,11 +234,11 @@ namespace RandomFileOpener
         private void MainWindow_Load(object sender, EventArgs e)
         {
             // Binding the listbox to a datasource here instead of .design file to prevent design time issues
-            this.FilesListBox.DataSource = OptionsManager.Instance.StackItems;
+            this.FilesListBox.DataSource = OptionsManager.Instance().StackItems;
             this.FilesListBox.DisplayMember = "Name";
             this.FilesListBox.ValueMember = "Id";
 
-            this.PathLbl.Text = OptionsManager.Instance.MainPath;
+            this.PathLbl.Text = OptionsManager.Instance().MainPath;
         }
     }
 }
